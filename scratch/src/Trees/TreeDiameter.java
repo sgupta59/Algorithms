@@ -1,4 +1,4 @@
-package trees;
+package Trees;
 
 public class TreeDiameter {
 
@@ -15,13 +15,4 @@ public class TreeDiameter {
 	}
 }
 
-class Node 
-{
-	Node left;
-	Node right;
-	int data;
-	Node(int data)
-	{
-		this.data = data;
-	}
-}
+ 

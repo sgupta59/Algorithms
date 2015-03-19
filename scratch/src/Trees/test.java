@@ -1,4 +1,4 @@
-package trees;
+package Trees;
 
 class Exc0 extends Exception { }
 class Exc1 extends Exc0 { } /* Line 2 */

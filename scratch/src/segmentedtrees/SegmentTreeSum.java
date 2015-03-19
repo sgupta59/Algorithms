@@ -1,4 +1,4 @@
-package scratch.segmentedtrees;
+package  segmentedtrees;
 
 /*
  * SegmentTreeSum.java

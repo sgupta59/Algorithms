@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001-2015 Gamma Technologies, Inc. All Rights Reserved.
  */
-package scratch.Trees;
+package Trees;
 
 /**
  *

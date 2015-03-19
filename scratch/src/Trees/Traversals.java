@@ -1,4 +1,4 @@
-package trees;
+package Trees;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -74,13 +74,3 @@ public class Traversals {
 	}
 }
 
-class Node
-{
-	int _value;
-	Node left;
-	Node right;
-	Node(int value)
-	{
-		_value = value;
-	}
-}
