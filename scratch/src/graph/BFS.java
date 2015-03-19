@@ -1,12 +1,11 @@
 package graph;
 
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class BFS {
 
-	public static void BFS(Graph g, int n)
+	public static void BFS_algorithm(Graph g, int n)
 	{
 		// mark the color as gray
 		g.color[n] = Graph.GRAY;
@@ -68,32 +67,32 @@ public class BFS {
 		Graph g = new Graph(8, false);
 		g.addEdge(0,1);
 		g.addEdge(0,4);
-		
+
 		g.addEdge(1,0);
 		g.addEdge(1,5);
-		
+
 		g.addEdge(2,3);
 		g.addEdge(2,5);
 		g.addEdge(2,6);
-		
+
 		g.addEdge(3,2);
 		g.addEdge(3,6);
 		g.addEdge(3,7);
-		
+
 		g.addEdge(4,0);
-		
+
 		g.addEdge(5,1);
 		g.addEdge(5,6);
 		g.addEdge(5,2);
-		
+
 		g.addEdge(6,5);
 		g.addEdge(6,3);
 		g.addEdge(6,2);
 		g.addEdge(6,7);
-		
+
 		g.addEdge(7, 6);
 		g.addEdge(7,3);
-		BFS(g,1);
+		BFS_algorithm(g,1);
 		g.printPath(1, 7);
 		System.out.println("");
 	}

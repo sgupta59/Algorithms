@@ -1,10 +1,9 @@
 package graph;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class DijkstraPQ {
-	
+
 	public static void DijkstraPriorityQueue(Graph g, int src)
 	{
 		// create priority queue
@@ -61,7 +60,7 @@ public class DijkstraPQ {
 		  Graph graph = new Graph();
 		  graph.setAdj(adj);
 		  DijkstraPriorityQueue(graph, 0);
-		 
+
 	}
 }
 
@@ -71,10 +70,11 @@ class Node implements Comparable<Node> {
 	public int cost;
 	public Node()
 	{
-		
+
 	}
-	
-	public boolean equals(Object o) {
+
+	@Override
+    public boolean equals(Object o) {
 		if (o instanceof Node)
 		{
 			Node on = (Node)o;
@@ -92,5 +92,12 @@ class Node implements Comparable<Node> {
 			return 1;
 		return 0;
 	}
-	
+
+    @Override
+    public int hashCode()
+    {
+        // TODO Auto-generated method stub
+        return super.hashCode();
+    }
+
 }
