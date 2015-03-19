@@ -27,15 +27,17 @@ public class AllPairsShortestPaths {
 		// create a 3D matrix to hold shortest parts for each individual vertex.
 		// the matrix is of the form of (i, j, k) where
 		// i, j are vertices in the graph, and k is the intermediate vertex.
-		int[][][] D = new int[g.length+1][g.length+1][g.length+1];
+		int[][][] D = new int[g.length][g.length][g.length+1];
 		// for k = 0, this is the original graph.
-		// D[][][0] gives shortest paths from vertex i to vertex j using the first vertex
-		for  (int idx = 1; idx <= g.length; ++idx)
+		// D[][][0] gives shortest paths from vertex i to vertex j with no intermediate vertex
+		// D[][][1] gives shortest path from vertex i to j with 1 intermediate vertex, vertex = 0
+		//D[][][1] gives shortest path from vertex i to j with 2 intermediate vertex, vertex = 0, 1
+		for  (int idx = 0; idx < g.length; ++idx)
 		{
-			for (int jdx = 1; jdx <= g.length; ++jdx)
+			for (int jdx = 0; jdx <  g.length; ++jdx)
 			{
-				D[idx][jdx][0] = g[idx-1][jdx-1];	
-				if (g[idx-1][jdx-1] == 0 && idx != jdx)
+				D[idx][jdx][0] = g[idx][jdx];	
+				if (g[idx][jdx] == 0 && idx != jdx)
 				{
 					// If there is no edge between idx and jdx set the weight to infinity.
 					D[idx][jdx][0] = Integer.MAX_VALUE;
@@ -46,19 +48,19 @@ public class AllPairsShortestPaths {
 		// now do this for each of the vertices
 		for  (int kdx = 1; kdx <= g.length; ++kdx)
 		{
-			for (int idx = 1; idx <= g.length; ++idx)
+			for (int idx = 0; idx <  g.length; ++idx)
 			{
-				for (int jdx = 1; jdx <= g.length; ++jdx)
+				for (int jdx = 0; jdx <  g.length; ++jdx)
 				{
 					// shortest path from idx to jdx using vertex kdx can be:
 					// SP(idx,jdx,kdx) = min { SP(idx,jdx, kdx-1, 
 					//                         SP(idx,kdx, kdx-1)+SP(kdx,jdx,kdx-1)
 					
-					if ( D[idx][kdx][kdx-1] != Integer.MAX_VALUE && 
-					    D[kdx][jdx][kdx-1] != Integer.MAX_VALUE)
+					if ( D[idx][kdx-1][kdx-1] != Integer.MAX_VALUE && 
+					    D[kdx-1][jdx][kdx-1] != Integer.MAX_VALUE)
 					{
 						D[idx][jdx][kdx] = Math.min(D[idx][jdx][kdx-1], 
-							                    D[idx][kdx][kdx-1]+D[kdx][jdx][kdx-1]);
+							                    D[idx][kdx-1][kdx-1]+D[kdx-1][jdx][kdx-1]);
 					}
 					else
 					{
@@ -90,9 +92,9 @@ public class AllPairsShortestPaths {
 	 */
 	public static void printMatrix(int[][][] D, int v)
 	{
-		for (int idx = 1; idx < D.length; ++idx)
+		for (int idx = 0; idx < D.length; ++idx)
 		{
-			for (int jdx = 1; jdx < D.length; ++jdx)
+			for (int jdx = 0; jdx < D.length; ++jdx)
 			{
 				if (D[idx][jdx][v] == Integer.MAX_VALUE)
 					System.out.print(" " + 0);
