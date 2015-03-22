@@ -15,29 +15,66 @@ package backtracking;
  */
 public class PrintSubsets
 {
-    public static void printSubsets(String in, String out)
+	/**
+	 * Print subsets as a binary tree. Either the subset has a character or it does not, e.g.
+				 *    					subset (abcd)
+				 *      a+subset(bcd)                           subset(bcd)
+				 *           /\                                      /\
+				 *          /  \                                    /  \
+			    ab+subset(cd)  a+subset(cd)              b+subset(cd)   b+subset(d)
+			       /\                  /\                         /\            /\  
+			      /  \                /  \                       /  \          /  \ 
+			 abc,(d)  ab,(d)     ac,(d)   a,(d)             bc,(d)  b,(d)   bd,()  b,()
+			   /\         /\           /\        /\               /\     /\      /\  
+   *          /  \       /  \         /  \      /  \             /  \   /  \    /  \ 
+   *    abcd,() abc,() abd,() ab,() acd,() ac,() .....
+   *    
+   *    Every level is 2 recursive calls, one with a character, one without
+   *    Empty substring means print the left side and return.
+ 
+	 * @param soFar
+	 * @param remaining
+	 */
+	public static void printSubset(String soFar, String remaining)
     {
-        if (in.isEmpty())
-        {
-            System.out.println(out);
-            return;
-        }
-        printSubsets(in.substring(1), out+in.charAt(0));
-        printSubsets(in.substring(1),out);
+    	if (remaining.length() == 0)
+    	{
+    		System.out.println(soFar);
+    	}
+    	else
+    	{
+    		printSubset(soFar+remaining.charAt(0), remaining.substring(1,remaining.length()));
+    		printSubset(soFar, remaining.substring(1,remaining.length()));
+    	}
     }
     public static void main(String[] args)
     {
         String in = "abcd";
         String out="";
-
+        printSubset("", in);
         printSubsets_iter(in,out);
-        printSubsets(in,out);
+       
     }
 
+    /**
+     * Print the subset as a quadtree, each tree has four children, this reduces one recursion.
+     *                                 abcd
+     *                                
+     *         a+(bcd)             b+(cd)               c+(d)             d+()
+     *         
+     *  ab+(cd) ac+(d)  ad+()     bc+(d) bd+()        cd+() c+()         
+     *       
+     *   1. Involves printing at each level the substring part.
+     *   2. when instring is empty, then return
+     * @param in
+     * @param out
+     */
     public static void printSubsets_iter(String in, String out)
     {
         if (in.length() == 0)
-            return;
+        {
+        	return;
+        }
         for (int idx = 0; idx < in.length(); ++idx)
         {
             String ins = in.substring(idx+1);
@@ -47,4 +84,5 @@ public class PrintSubsets
         }
     }
 
+    
 }
