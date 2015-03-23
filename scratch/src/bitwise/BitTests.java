@@ -36,19 +36,28 @@ public class BitTests
 
     public static void main(String[] args)
     {
-        noTempSwap();
-        System.out.println("Reverse Value: " + getBinaryString(reverseValue(10)));
-        shiftTypes();
-
-       // turnOffRightMost();
-       // printBits();
-
-        //subtract(5,2);
-        //int val =  sub(5,2);
-        //countBits();
+        leastSignificantOne(10);
 
     }
 
+    public static int leastSignificantOne(int x)
+    {
+        System.out.println(" x: " + getBinaryString(x));
+        System.out.println("-x: " + getBinaryString(-x));
+        int r = x & -x;
+        System.out.println("r: " + getBinaryString(r));
+        return r;
+    }
+    /**
+     * Find minimum of two integers.
+     *
+     *
+     */
+    public static int findMin(int x, int y)
+    {
+        //return y ^ ((x^y) & -(x<y));
+        return x;
+    }
     /*
      * Swap two integers using XOR operator.
      *
@@ -210,15 +219,22 @@ public class BitTests
     }
     public static int add(int a, int b){
         do {
-          a = a & b; //carry
-          b = a ^ b;  //addition
-          a = a << 1; //carry shift to one bit left
+            a = a & b; //carry
+            b = a ^ b;  //addition
+            a = a << 1; //carry shift to one bit left
         }while(a != 0);  //exit
         return b;     //addition result
-      }
+    }
 
-        public static int sub(int a, int b){
-          return add(a, add(~b, 1));
+    public static int sub(int a, int b){
+        return add(a, add(~b, 1));
 
-        }
+    }
+
+    public static boolean isOdd(int x)
+    {
+        if ( (x & 1) == 0)
+            return false;
+        return true;
+    }
 }
