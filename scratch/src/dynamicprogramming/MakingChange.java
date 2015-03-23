@@ -2,66 +2,59 @@ package dynamicprogramming;
 
 public class MakingChange {
 
-	public static int makeChange_DP(int[] coins, int n)
+	public static int[] coins = {25,10,5,1};
+	
+	public static int makeChange(int amount)
 	{
-		if (n == 0)
+		if (amount <= 0)
 			return 0;
-		int[] amt = new int[n+1];
-		amt[0] = 0;
-		int[] newsol = new int[coins.length];
-		for (int idx = 1; idx < amt.length; ++idx)
+		int retval = Integer.MAX_VALUE;
+		for (int idx = 0; idx < coins.length; ++idx)
 		{
-			for (int kdx = 0; kdx < coins.length; ++kdx)
-				newsol[kdx] = Integer.MAX_VALUE;
-			for (int kdx = 0; kdx < coins.length; ++kdx)
+			if (coins[idx] <= amount)
 			{
-				if (coins[kdx] <= idx)
-				{
-					newsol[kdx] = 1 + amt[idx - coins[kdx]];
-				}
+				int count = makeChange(amount-coins[idx])+1;
+				if (count < retval)
+					retval = count;
 			}
-			int min = newsol[0];
-			for (int kdx = 1; kdx < coins.length;++kdx)
-			{
-				if (newsol[kdx] < min)
-				{
-					min = newsol[kdx];
-				}
-			}
-			amt[idx] = min;
 		}
-		return amt[n];
+		return retval;
 	}
-	// this is a recrsive solution, so needs a terminating condition
-	public static int makeChange_Recursive(int[] coins, int n)
+	
+	public static int makeChangeMemoized(int amount, int[] memo)
 	{
-		if (n == 0)
+		if (amount<= 0)
+		{
 			return 0;
-		int[] mysol = new int[coins.length];
-		for (int idx = 0; idx < coins.length; ++idx)
-			mysol[idx] = Integer.MAX_VALUE;
+		}
+		if (memo[amount] > 0)
+		{
+			return memo[amount];
+		}
+		int reval = Integer.MAX_VALUE;
 		for (int idx = 0; idx < coins.length; ++idx)
 		{
-			if (coins[idx] <= n)
+			if (coins[idx] <= amount )
 			{
-				mysol[idx] = makeChange_Recursive(coins, n-coins[idx]) + 1;
+				int count = 0;
+				count = makeChangeMemoized(amount-coins[idx],memo)+1;
+			    if (count < reval)
+				{
+					reval = count;
+				}
 			}
 		}
-		int minvalue = mysol[0];
-		for (int idx = 1; idx < coins.length; ++idx)
-		{
-			if (minvalue > mysol[idx])
-				minvalue = mysol[idx];
-		}
-		return minvalue;
+		memo[amount] = reval;
+		return reval;
 	}
 	public static void main(String[] args)
 	{
-		int[] coins = {1, 3, 9, 19, 26};
-		int n = 66;
-		// int ncoins = makeChange_Recursive(coins, n);
-		//System.out.println("Coins: " + ncoins);
-		int ncoins1 = makeChange_DP(coins, n);
-		System.out.println("Coins: " + ncoins1);
+		int size = makeChange(30);
+		System.out.println("Recursive change : " + size);
+		int[] memo = new int[31];
+		for (int idx = 0; idx < 31; ++idx)
+			memo[idx] = 0;
+		size = makeChangeMemoized(30, memo);
+		System.out.println("Memoized Recursive change : " + size);
 	}
 }
