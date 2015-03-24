@@ -1,0 +1,56 @@
+General
+	http://en.literateprograms.org/Category:Programming_language:C
+	https://www.ics.uci.edu/~eppstein/teach.html
+	http://web.cs.ucdavis.edu/~gusfield/cs122f10/videolist.html         video
+	https://courses.engr.illinois.edu/cs498374/fa2014/lectures.html     video
+	https://courses.engr.illinois.edu/cs498dl1/sp2015/standards.html
+Books
+
+	https://github.com/vhf/free-programming-books
+BackTracking
+	Knights Tour Optimized:
+		http://codereview.stackexchange.com/questions/66888/making-backtracking-knights-tours-solution-more-efficient
+		http://blog.tiaan.com/link/2010/06/01/knights-tour-warnsdorff-csharp-cplusplus
+	Simple
+		http://www.dreamincode.net/forums/topic/258287-a-look-at-backtracking/
+		
+8 Queen Problem
+	Description: http://en.literateprograms.org/index.php?title=Special:DownloadCode/Eight_queens_puzzle_(C)&oldid=15660
+	Source     : http://en.literateprograms.org/index.php?title=Special:DownloadCode/Eight_queens_puzzle_(C)&oldid=15660
+
+Recursion/Subset Sum
+	https://algoriddles.wordpress.com/category/recursion-concepts/
+	
+Dynamic Programming
+	https://algoriddles.wordpress.com/category/dynamic-programming/
+	
+Bit Manipulation
+	https://algoriddles.wordpress.com/category/bit-manipulation/
+	
+Subset Sum
+	https://codeaccepted.wordpress.com/tag/subset-sum-problem/
+		Has 3 different implementations, bitmasking, dynamic programming and backtracking
+	http://www.geeksforgeeks.org/backttracking-set-4-subset-sum/
+		Normal implemetation, code fixed.
+		
+Books:
+		http://www.scientificlib.com/en/Books/DesignAnalysisOflgorithmsVVMuniswamy.html
+				This seems like a good book explaining things.
+I can't meet your financial needs, but I'm reliable and steady.  
+If you'd like to meet for coffee, we can see if there's a spark of chemistry
+
+Well, I could do dinner/lunch and 400 every time we meet but I can meet only 2 times 
+a month for now.
+I want to be very discreet and am not really looking to get into each others personal lives. 
+I look at this site as my chance to "sow my oats" haha I should have done it when I was younger.
+
+I can tell you I will be respectful to you and I hope you will do the same to me.
+
+I have not had a relationship in a while, and I am not even sure I want to for a bit.
+Not very confident in myself (call it judgement or bad luck) about holding a 
+relationship. 
+
+I am trying not to be a catfish but I am a guy so I naturally do stupid things lol
+
+
+ 
