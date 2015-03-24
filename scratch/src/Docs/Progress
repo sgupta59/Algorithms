@@ -7,7 +7,11 @@ All pairs shortest path:   http://www.cse.ust.hk/faculty/golin/COMP271Sp03/Notes
 Shortest Path              http://www.columbia.edu/~cs2035/courses/ieor6614.S11/sp.pdf
 
 
+
 General                     http://www.cs.princeton.edu/~rs/AlgsDS07/
 
 
 Coursera Lectures          https://class.coursera.org/algo2-002/lecture
+UCDAVIS Lectures           http://web.cs.ucdavis.edu/~gusfield/cs122f10/videolist.html
+                           -good explanation of dynamic programming for shortest path.
+ Princeton lectures        http://algs4.cs.princeton.edu/lectures/
