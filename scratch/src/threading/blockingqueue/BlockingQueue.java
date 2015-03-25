@@ -31,12 +31,12 @@ public class BlockingQueue<T> {
             System.out.println("Thread " + Thread.currentThread().getName() + " waiting in put");
             wait();
         }
-        boolean isEmpty = isEmpty();
+
         linkedList.add(t);
-        if (isEmpty)
-        {
-            notifyAll();
-        }
+        // send out a notifiy signal as soon as an item is added.
+        // if a put thread is waiting, then it will do a isFull test in teh while loop and go back to waiting.
+        // a get thread that is waiting will get the item as soon as possible.
+        notifyAll();
     }
 
     public synchronized T get() throws InterruptedException
@@ -46,10 +46,13 @@ public class BlockingQueue<T> {
             System.out.println("Thread " + Thread.currentThread().getName() + " waiting in get");
             wait();
         }
-        boolean isFull = isFull();
+
         T t = linkedList.poll();
-        if (isFull)
-            notifyAll();
+        // send out a notify signal.
+        // if a put thread is waiting, it will get the control.
+        // if a get thread is waiting, if the queue becomes empty, the isEmpty() test will keep the waiting thread
+        // in the while loop
+        notifyAll();
         return t;
     }
     private boolean isEmpty()
