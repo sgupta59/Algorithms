@@ -46,43 +46,67 @@ public class Intersection
             System.out.println("No intersection found");
     }
 
+    /**
+     * Make the bigger list point to itself, i.e. tail = head.
+     * The count of the bigger list is also known.
+     * Take two pointers in the other list
+     * move one pointer from the other list 'count' times forward
+     * now move the two pointers in the list lockstep, this will find the intersection point
+     * @param head1
+     * @param head2
+     */
     public static void findCircularPoint(Node head1, Node head2)
     {
 
         int counter = 0;
         Node temp = head1;
+        // count and make end point to the begining
         while (temp != null)
         {
             ++counter;
+
             if (temp._next == null)
+            {
                 temp._next = head1;
+                break;
+            }
+            temp = temp._next;
         }
+        Node other1 = head2;
         for (int idx = 0; idx < counter; ++idx)
         {
-            head1 = head1._next;
+            other1 = other1._next;
         }
-        while (head1 != null)
+        while (head2 != null)
         {
-            if (head1 == head2)
+            if (other1 == head2)
             {
                 System.out.println("Intersection point: " + head1._data);
                 break;
             }
-            head1= head1._next;
+            other1= other1._next;
             head2 = head2._next;
         }
     }
-    static class Node
+    public static int makeCircular(Node head)
     {
-        Node _next;
-        int _data;
-
-        Node(int data)
+        int counter = 0;
+        Node temp = head;
+        // count and make end point to the begining
+        while (temp != null)
         {
-            _data = data;
-        }
+            ++counter;
 
+            if (temp._next == null)
+            {
+                temp._next = head;
+                break;
+            }
+            temp = temp._next;
+        }
+        return counter;
     }
+
 
     public static void printLinkedList(Node list)
     {

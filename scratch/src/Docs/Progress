@@ -5,7 +5,8 @@ Minimum Spanning Trees:    http://www.cse.ust.hk/faculty/golin/COMP271Sp03/Notes
 All pairs shortest path:   http://www.cse.ust.hk/faculty/golin/COMP271Sp03/Notes/MyL15.pdf
 
 Shortest Path              http://www.columbia.edu/~cs2035/courses/ieor6614.S11/sp.pdf
-
+                           http://www.cs.rit.edu/~rlc/Courses/Algorithms/ClassNotes/ShortestPath.pdf
+                           ---- Good discussion on bellman ford vs dijkstra for today
 
 
 General                     http://www.cs.princeton.edu/~rs/AlgsDS07/
@@ -13,5 +14,10 @@ General                     http://www.cs.princeton.edu/~rs/AlgsDS07/
 
 Coursera Lectures          https://class.coursera.org/algo2-002/lecture
 UCDAVIS Lectures           http://web.cs.ucdavis.edu/~gusfield/cs122f10/videolist.html
-                           -good explanation of dynamic programming for shortest path.
+                                    -good explanation of dynamic programming for shortest path.
  Princeton lectures        http://algs4.cs.princeton.edu/lectures/
+                           https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
+MIT                        http://courses.csail.mit.edu/6.006/spring11/notes.shtml
+Boston                     http://www.cs.bu.edu/~best/courses/cs109/
+                                - eulerean circuit etc.  
+Steve Skienna              http://www3.cs.stonybrook.edu/~algorith/
