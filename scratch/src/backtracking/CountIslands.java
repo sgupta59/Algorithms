@@ -53,6 +53,41 @@ public class CountIslands
                 visited[u-1][v] = true;
                 _queue.offer(new Pair<Integer,Integer>(u-1,v));
             }
+            if (can_move(u,v-1,g) && !visited[u][v-1])
+            {
+                visited[u][v-1] = true;
+                _queue.offer(new Pair<Integer,Integer>(u,v-1));
+            }
+            // move right
+            if (can_move(u,v+1,g) &&  !visited[u][v+1])
+            {
+                visited[u][v+1] = true;
+                _queue.offer(new Pair<Integer,Integer>(u,v+1));
+            }
+            // move \
+            if (can_move(u-1,v-1,g) && !visited[u-1][v-1])
+            {
+                visited[u-1][v-1] = true;
+                _queue.offer(new Pair<Integer,Integer>(u-1,v-1));
+            }
+           // move \
+            if (can_move(u+1,v+1,g) && !visited[u+1][v+1])
+            {
+                visited[u+1][v+1] = true;
+                _queue.offer(new Pair<Integer,Integer>(u+1,v+1));
+            }
+            // move /
+            if (can_move(u-1,v+1,g) && !visited[u-1][v+1])
+            {
+                visited[u-1][v+1] = true;
+                _queue.offer(new Pair<Integer,Integer>(u-1,v+1));
+            }
+            // move /
+            if (can_move(u+1,v-1,g) && !visited[u+1][v-1])
+            {
+                visited[u+1][v-1] = true;
+                _queue.offer(new Pair<Integer,Integer>(u+1,v-1));
+            }
         }
     }
     public static boolean countIslands_doit(int[][] g, boolean visited[][], int u, int v)
@@ -127,7 +162,8 @@ public class CountIslands
             {
                 if (g[idx][jdx] != 0 && isvisited[idx][jdx] == false)
                 {
-                    countIslands_doit(g,isvisited, idx,jdx);
+                    //countIslands_doit(g,isvisited, idx,jdx);
+                    countIslands_bfs(g,isvisited,idx,jdx);
                     ++count;
                 }
             }
