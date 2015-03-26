@@ -12,7 +12,14 @@ import java.util.LinkedList;
 /**
  *  http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html
  *
- *  A fair locking class with a nested lock that can cause threads to lock.
+ *  A fair locking class with a nested lock that can cause threads to lock. This will happen as
+ *  if one thread tries to lock this Lock and goes into the wait mode in the obj.wait() point
+ *  and another thread tries to unlock this lock, the other thread will block as it can not aquire the "this" lock as it is locked
+ *  by the first thread.
+ *
+ *  Thread1.lock().
+ *  Thread2.lock() --> waiting for the lock in the obj.wait() point
+ *  Thread1.unlock() --> blocks as it can not get the "this" monitor lock
  *
  * @author Sanjeev Gupta
  *
