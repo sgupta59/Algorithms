@@ -10,7 +10,7 @@ package threading.blockingqueue;
 import java.util.LinkedList;
 
 /**
- *
+ * Source: http://tutorials.jenkov.com/java-concurrency/blocking-queues.html
  *
  * @author Sanjeev Gupta
  *
