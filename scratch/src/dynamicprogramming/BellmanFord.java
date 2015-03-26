@@ -2,26 +2,30 @@ package dynamicprogramming;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * http://courses.cs.vt.edu/~cs4104/murali/Fall09/lectures/lecture-15-dynamic-programming.pdf
+ * @author kg
+ *
+ */
 public class BellmanFord {
 
-	public static void bellmanFord(Integer[][] adjMatrix, int s, int t)
+	public static void bellmanFord(Integer[][] g, int s, int t)
 	{
-		Integer[][] costMatrix = new Integer[adjMatrix.length][];
-		for (int idx = 0; idx < adjMatrix.length; ++idx)
+		Integer[][] M = new Integer[g.length][];
+		for (int idx = 0; idx < g.length; ++idx)
 		{
-			costMatrix[idx] = new Integer[adjMatrix[0].length];
-			for (int jdx = 0; jdx < adjMatrix[0].length; ++jdx)
-				costMatrix[idx][jdx] = Integer.MAX_VALUE;
+			M[idx] = new Integer[g[0].length];
+			for (int jdx = 0; jdx < g[0].length; ++jdx)
+				M[idx][jdx] = Integer.MAX_VALUE;
 		}
-		int nrows = adjMatrix.length;
-		int ncols = adjMatrix[0].length;
+		int nrows = g.length;
+		int ncols = g[0].length;
 		// Let the cost matrix be with 
 		// rows = vertex ids
 		// cols = # of edges.
 		// mark the target vertex id to be 0 for all edges. 
 		for (int idx = 0; idx < ncols; ++idx)
-			costMatrix[t][idx] = 0;
+			M[t][idx] = 0;
 		// all other cost matrix values are at infinity by default.
 		// now, start computing hte costs.
 		// for # of edges in increasing order.
@@ -29,29 +33,32 @@ public class BellmanFord {
 		{
 			// Here idx is # of edges in the solution.
 			// for each vertex in the adjmatrix.
-			for (int vid = 0; vid < nrows; ++vid)
+			for (int u = 0; u < nrows; ++u)
 			{
-				List<Integer> adjList = adjacency(adjMatrix,vid);
+				List<Integer> adjList = adjacency(g,u);
 				// for for given vid, and its adjlists, calculate the matrix values.
 				// Solution is: Opt(i,v) = min(opt(i-1,v), min(opt(i-1,v"")+cvv"
-				int sol1 = costMatrix[vid][idx-1];
+				int sol1 = M[u][idx-1];
 				for (int jdx = 0; jdx < adjList.size(); ++jdx)
 				{
 					int adjid = adjList.get(jdx);
-					if (costMatrix[adjid][idx-1] == Integer.MAX_VALUE)
+					if (M[adjid][idx-1] == Integer.MAX_VALUE)
 						continue;
-					int sol2 = costMatrix[adjid][idx-1]+adjMatrix[vid][adjid];
+					int sol2 = M[adjid][idx-1]+g[u][adjid];
 					if (sol1 > sol2)
 						sol1 = sol2;
 				}
-				costMatrix[vid][idx] = sol1;
+				M[u][idx] = sol1;
 			}
+			
 		}
+		printMatrix(M);
+		System.out.println("");
 	}
 	private static List<Integer> adjacency(Integer[][] G, int v) {
 		List<Integer> result = new ArrayList<Integer>();
 		for (int x = 0; x < G.length; x++) {
-			if (G[v][x] != null) {
+			if (G[v][x] != null && G[v][x] != 0) {
 				result.add(x);
 			}
 		}
@@ -77,8 +84,17 @@ public class BellmanFord {
 				{null,null,-3,null,null,2},
 				{null,null,null,null,null,null}
 		};
-		bellmanFord1D(adjMatrix1,0);
+		Integer[][] g = {
+				{0, -1, 4, 0, 0},
+				{0,  0, 3, 2, 2},
+				{0,  0, 0, 0, 0},
+				{0,  1, 5, 0, 0},
+				{0, 0, 0, -3, 0}
+		};
 		bellmanFord(adjMatrix,5,0);
+		
+		bellmanFord1D(g,0);
+		
 		printMatrix(adjMatrix);
 	}
 	
@@ -147,7 +163,12 @@ public class BellmanFord {
 		for (int idx = 0; idx < matrix.length; ++idx)
 		{
 			for (int jdx = 0; jdx < matrix[idx].length; ++jdx)
-				System.out.print(" " + matrix[idx][jdx]);
+			{
+				if (matrix[idx][jdx] == Integer.MAX_VALUE)
+					System.out.print(" i ");
+				else
+					System.out.print(" " + matrix[idx][jdx] + " ");
+			}
 			System.out.println("");
 		}
 		
