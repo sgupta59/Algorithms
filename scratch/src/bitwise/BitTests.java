@@ -36,10 +36,24 @@ public class BitTests
 
     public static void main(String[] args)
     {
-        String posnum = getBinaryString(43);
-        String negnum = getBinaryString(-43);
+        convertToNegativeNum(43);
     }
 
+    /**
+     * To convert a positive integer to negative integer (in 2s complement)
+     * 1. flip all bits (~x)
+     * 2. add 1
+     * @param x
+     * @return
+     */
+    public static int convertToNegativeNum(int x)
+    {
+        //String posnum = getBinaryString(43);
+        //String negnum = getBinaryString(-43);
+        int num1 = ~x+1;
+        //String num = getBinaryString(num1);
+        return num1;
+    }
     public static int leastSignificantOne(int x)
     {
         System.out.println(" x: " + getBinaryString(x));
