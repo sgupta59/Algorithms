@@ -20,6 +20,8 @@ package bitwise;
  *
  * 1. http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2010/video-lectures/lecture-2-bit-hacks/MIT6_172F10_lec02.pdf
  * 2. http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/
+ *
+ * TODO: TODO: How to set 31st bit for a negative number (setNthBit)
  * @author Sanjeev Gupta
  *
  */
@@ -36,7 +38,11 @@ public class BitTests
 
     public static void main(String[] args)
     {
-        convertToNegativeNum(43);
+        int val = -20;
+        String valstr = getBinaryString(-20);
+        String valstr1 = getBinaryString(1<<31);
+        int newval = setNthBit(20,32);
+        System.out.println("");
     }
 
     /**
@@ -254,16 +260,60 @@ public class BitTests
      * & 00000001
      *   00000001--> bit is set also an odd number
      *
-     * 00101011
+     *  to set the Nth bit, just left shift 1 and do an & operation.
      *
+     * test consider number 122, bit pattern = 01111010
+     *  122 ( 1<<3) = 00001000
      *
+     *  NOTE: 00001000 is also 1<<3 so this is also acting like a bitmask.
+     *
+     *  NOTE: Works for both + and -ve numbers
      * @param number
      * @return
      */
-    public boolean isNthBitSet(int number, int bitid)
+    public static boolean isNthBitSet(int number, int bitid)
     {
         int tmp = 1 << bitid;
-        return (number & tmp) == 1;
+        boolean isSet =  (number & tmp) == 1;
+        return isSet;
+    }
+
+    /**
+     * Set the Nth bit.
+     * A number is say 01101001
+     * To set the 3rd bit, do:
+     *
+     *   01101001
+     * | 00001000
+     *   01101101
+     *
+     *
+     * @param number
+     * @param bit
+     * @return
+     */
+    public static int setNthBit(int number, int bit)
+    {
+        return (number | 1<<bit);
+    }
+
+    /**
+     * To unset a bit, use negation of an and
+     *
+     * unset 3rd bit in 0111000
+     * 1<<3 = 1000
+     * ~(1<<3) =1110111
+     *   0111000
+     * & 1110111
+     *   0110000
+     *
+     * @param number
+     * @param bit
+     * @return
+     */
+    public static int unsetNthBit(int number, int bit)
+    {
+        return number & ~(1<<bit);
     }
     /**
      * Check if a number is even or odd. If a number is odd, the last bit is 1
