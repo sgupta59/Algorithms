@@ -1,6 +1,5 @@
-Programming Competition Lectures
-                                    https://activities.tjhsst.edu/sct/lectures.php
 
+ 
 Minimum Spanning Trees:    http://www.cse.ust.hk/faculty/golin/COMP271Sp03/Notes/MyL10.pdf
                            http://www.columbia.edu/~cs2035/courses/ieor6614.S11/mst.pdf
                            http://www.cs.princeton.edu/~rs/AlgsDS07/14MST.pdf
@@ -14,7 +13,8 @@ Shortest Path              http://www.columbia.edu/~cs2035/courses/ieor6614.S11/
 
 General                     http://www.cs.princeton.edu/~rs/AlgsDS07/
 
-
+Programming Competition Lectures
+                                    https://activities.tjhsst.edu/sct/lectures.php
 Coursera Lectures          https://class.coursera.org/algo2-002/lecture
 UCDAVIS Lectures           http://web.cs.ucdavis.edu/~gusfield/cs122f10/videolist.html
                                     -good explanation of dynamic programming for shortest path.
