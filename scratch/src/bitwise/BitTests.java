@@ -36,8 +36,8 @@ public class BitTests
 
     public static void main(String[] args)
     {
-        leastSignificantOne(10);
-
+        String posnum = getBinaryString(43);
+        String negnum = getBinaryString(-43);
     }
 
     public static int leastSignificantOne(int x)
@@ -231,6 +231,32 @@ public class BitTests
 
     }
 
+    /**
+     * Check if the nth bit is set, say you have 43
+     *
+     * To test first bit, do
+     * 00101011 & 1
+     *   00101011
+     * & 00000001
+     *   00000001--> bit is set also an odd number
+     *
+     * 00101011
+     *
+     *
+     * @param number
+     * @return
+     */
+    public boolean isNthBitSet(int number, int bitid)
+    {
+        int tmp = 1 << bitid;
+        return (number & tmp) == 1;
+    }
+    /**
+     * Check if a number is even or odd. If a number is odd, the last bit is 1
+     * even number : last bit is 0
+     * @param x
+     * @return
+     */
     public static boolean isOdd(int x)
     {
         if ( (x & 1) == 0)
