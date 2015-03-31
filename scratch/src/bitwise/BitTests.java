@@ -13,6 +13,14 @@ package bitwise;
  * <<  -    LEFT SHIFT
  * >>  -    RIGHT SHIFT
  *
+ * 1 & 0 = 0
+ * 1 & 1 = 1
+ * 1 | 0 = 1
+ * 1 | 1 = 1
+ * 0 | 0 = 0
+ * 1 ^ 0 = 1
+ * 1 ^ 1 = 0
+ * 0 ^ 0 = 0
  *
  * 1. (X^Y)^Y is X
  *
@@ -300,12 +308,11 @@ public class BitTests
     /**
      * To unset a bit, use negation of an and
      *
-     * unset 3rd bit in 0111000
-     * 1<<3 = 1000
-     * ~(1<<3) =1110111
-     *   0111000
-     * & 1110111
-     *   0110000
+     * unset 4th bit in 127
+     *    01111111    (127 in binary)
+     * &  11101111    (~(1<<4))
+     *  --------
+     *    01101111
      *
      * @param number
      * @param bit
@@ -326,5 +333,18 @@ public class BitTests
         if ( (x & 1) == 0)
             return false;
         return true;
+    }
+
+    /**
+     * By toggle, I mean say i have
+     * 001001, toggle the first bit, make it 001000? and then toggle the first bit again to 001001?
+     * 001001^1
+     * @param x
+     * @param bit
+     * @return
+     */
+    public static int toggleNthBit(int x, int bit)
+    {
+        return (x^(1<<bit));
     }
 }
