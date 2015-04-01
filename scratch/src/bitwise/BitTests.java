@@ -174,6 +174,24 @@ public class BitTests
         System.out.println(getBinaryString(c >>>= 2));
         System.out.println(getBinaryString(c <<= 2));
     }
+    /**
+     * Turn off the rightmost bit:
+     * e.g. 1100100 --> 1100000
+     * e.g. 1100001 --> 1100000
+     * e.g. 1000000 --> 0000000
+     * NOTE: Subtracting 1 from a value turns off the right most bit and all the lower bits to 1
+     * 1100100-1 = 1100011
+     * and '&' with the original number will turn off the lower bits back to 0
+     *
+     * so, 1100100 (turn of 2nd bit)
+     * 1100100 - 1 = 1100011
+     *
+     *   1100100
+     * & 1100011
+     *   1100000
+     *
+     * e.g.
+     */
     public static void turnOffRightMost()
     {
         int value = 8;
