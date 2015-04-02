@@ -8,7 +8,7 @@
 package arrays;
 
 /**
- *
+ * Source: https://github.com/pedrovgs/Algorithms/blob/master/src/main/java/com/github/pedrovgs/problem6/MergeSortedArrays.java
  *
  * @author Sanjeev Gupta
  *
