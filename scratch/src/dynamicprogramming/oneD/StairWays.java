@@ -45,7 +45,7 @@ public class StairWays {
 	
 	// Memoized version, since there is only one variable, this is an array.
 	// memo size is n+1 as n is one based and we need stair 0.
-	public static int stairs_m(int n, int[] memo)
+	public static int stairs_top_down(int n, int[] memo)
 	{
 		if (memo[n] != -1)
 			return memo[n];
@@ -54,11 +54,11 @@ public class StairWays {
 			memo[n] = 1;
 			return memo[n];
 		}
-		memo[n] = stairs_m(n-1,memo) + stairs_m(n-2,memo);
+		memo[n] = stairs_top_down(n-1,memo) + stairs_top_down(n-2,memo);
 		return memo[n];
 	}
 	
-	public static int stairs_dp(int n)
+	public static int stairs_bottoms_up(int n)
 	{
 		// create an array to hold the results
 		int[] memo = new int[n+1];
@@ -81,9 +81,9 @@ public class StairWays {
 		int[] memo = new int[n+1];
 		for (int idx = 0; idx < memo.length; ++idx)
 			memo[idx] = -1;
-		res = stairs_m(n, memo);
+		res = stairs_top_down(n, memo);
 		System.out.println(res);
-		res = stairs_dp(n);
+		res = stairs_bottoms_up(n);
 		System.out.println(res);
 	}
 }
