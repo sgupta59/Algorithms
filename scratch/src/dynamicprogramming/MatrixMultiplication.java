@@ -25,26 +25,32 @@ public class MatrixMultiplication {
 	}
 	public static int[][] multiply(int[][] m1, int[][] m2)
 	{
-		int nrows1 = m1.length;
-		int ncols1 = m1[0].length;
-		int nrows2 = m2.length;
-		int ncols2 = m2[0].length;
-		if (ncols1 != nrows2)
+		int r1 = m1.length;
+		int c1 = m1[0].length;
+		int r2 = m2.length;
+		int c2 = m2[0].length;
+		if (c1 != r2)
 			return null;
-		int[][] m3 = createMatrix(nrows1, ncols2);
+		int[][] m3 = createMatrix(r1, c2);
+		 
+		// complexity is:
+		// for each row of m1, for each column of m1 , multiply for each row of m2
+		// (m,n)x(n,l) = 
+        // n.(m.l) (row1 times col2) times col 1
 		// for each row of m1
-		for (int idx = 0; idx < nrows1; ++idx)
+		for (int i = 0; i < r1; ++i)
 		{
 			// for each column of m2
-			for (int jdx = 0; jdx < ncols2; ++jdx)
+			for (int j = 0; j < c2; ++j)
 			{
 				int sum = 0;
-				// for each column of the matrix.
-				for (int kdx = 0; kdx < ncols1; ++kdx)
+				// for each column of the m1.
+				for (int k = 0; k < c1; ++k)
 				{
-					sum += m1[idx][kdx]*m2[kdx][jdx];
+					
+					sum = sum + m1[i][k]*m2[k][j];
 				}
-				m3[idx][jdx] = sum;
+				m3[i][j] = sum;
 			}
 		}
 		return m3;
@@ -63,14 +69,16 @@ public class MatrixMultiplication {
 	public static void testmatrix()
 	{
 		int rows = 3, columns = 3;
-		int[][] m1 =  createMatrix(3, 3);
-		int[][] m2 = createMatrix(3,3);
-		m1[0][0] = 1;m1[0][1] = 2;m1[0][2] = 3;
-		m1[1][0] = 4;m1[1][1] = 5;m1[1][2] = 6;
-		m1[2][0] = 7;m1[2][1] = 8;m1[2][2] =9;
-		m2[0][0] = 9;m2[0][1] = 8;m2[0][2] = 7;
-		m2[1][0] = 6;m2[1][1] = 5;m2[1][2] = 4;
+		int[][] m1 =  createMatrix(3, 4);
+		int[][] m2 = createMatrix(4,3);
+		m1[0][0] = 1;m1[0][1] = 2;m1[0][2] = 3; m1[0][3] = 4;
+		m1[1][0] = 4;m1[1][1] = 5;m1[1][2] = 6; m1[1][3] = 7;
+		m1[2][0] = 7;m1[2][1] = 8;m1[2][2] =9;  m1[2][3] = 10;
+		
+		m2[0][0] = 1;m2[0][1] = 8;m2[0][2] = 7;
+		m2[1][0] = 2;m2[1][1] = 5;m2[1][2] = 4;
 		m2[2][0] = 3;m2[2][1] = 2;m2[2][2] =1;
+		m2[3][0] = 4;m2[3][1] = 2;m2[3][2] =1;
 		printMatrix(m1);
 		System.out.print("--------------\n");
 		printMatrix(m2);
@@ -82,7 +90,7 @@ public class MatrixMultiplication {
 	}
 	public static void main(String[] args)
 	{
-
+		testmatrix();
 		
 	}
 }

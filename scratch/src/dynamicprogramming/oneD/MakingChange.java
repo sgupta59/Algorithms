@@ -1,4 +1,4 @@
-package dynamicprogramming;
+package dynamicprogramming.oneD;
 
 public class MakingChange {
 
