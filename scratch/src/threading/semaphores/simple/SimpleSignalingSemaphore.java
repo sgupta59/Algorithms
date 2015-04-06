@@ -23,7 +23,7 @@ package threading.semaphores.simple;
 public class SimpleSignalingSemaphore
 {
     private boolean _signal = false;
-
+    private int _counter = 0;
     public SimpleSignalingSemaphore()
     {
         _signal = false;
@@ -32,12 +32,16 @@ public class SimpleSignalingSemaphore
     public synchronized void take()
     {
         _signal = true;
+        ++_counter;
+        System.out.println("Semaphore taken, count: " + _counter + ", THREAD: " + Thread.currentThread().getName());
         this.notify();
     }
 
     public synchronized void release() throws InterruptedException
     {
         while (!_signal) this.wait();
+        --_counter;
+        System.out.println("Semaphore released, count: " + _counter + ", THREAD: " + Thread.currentThread().getName());
         _signal = false;
     }
 }

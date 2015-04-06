@@ -32,7 +32,7 @@ public class ReceivingThread extends Thread
             {
                 _sem.release();
                 Thread.sleep(2000);
-                System.out.println("Receiving thread released a semaphore");
+
             }
             catch (InterruptedException e)
             {

@@ -15,37 +15,50 @@ import threading.semaphores.simple.SimpleSignalingSemaphore;
  * @author Sanjeev Gupta
  *
  */
-public class SendingThread
+public class SendingThread extends Thread
 {
+    SimpleSignalingSemaphore _semap;
+
+    public SendingThread(SimpleSignalingSemaphore semap)
+    {
+        _semap = semap;
+    }
+
+    @Override
+    public void run()
+    {
+        while (true)
+        {
+            _semap.take();
+
+            try
+            {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void main(String[] args)
     {
-        // create a simple semaphore
-        SimpleSignalingSemaphore sema = new SimpleSignalingSemaphore();
-        Thread t1 = new Thread(){@Override
-        public void run() {
-            while (true)
-            {
-                sema.take();
-                System.out.println("Semaphore taken, i.e. signaled");
-                try
-                {
-                    Thread.sleep(1000);
-                }
-                catch (InterruptedException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }};
-        t1.start();
+        SimpleSignalingSemaphore  sema = new SimpleSignalingSemaphore();
+        ReceivingThread rth = new ReceivingThread(sema);
+        SendingThread sth = new SendingThread(sema);
+        rth.start();
+        sth.start();
         try
         {
-            t1.join();
+            rth.join();
+            sth.join();
         }
         catch (InterruptedException e)
         {
 
         }
+
     }
 }
