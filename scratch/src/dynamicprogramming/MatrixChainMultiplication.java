@@ -1,47 +1,34 @@
 package dynamicprogramming;
 
 /************************************************************************
-*http://mytestpjt.googlecode.com/svn/trunk/ASAssembly/src/com/mhhe/clrs2e/MatrixChainMultiply.java
-* 1. This software is for the purpose of demonstrating one of many
-* ways to implement the algorithms in Introduction to Algorithms,
-* Second edition, by Thomas H. Cormen, Charles E. Leiserson, Ronald
-* L. Rivest, and Clifford Stein.  This software has been tested on a
-* limited set of test cases, but it has not been exhaustively tested.
-* It should not be used for mission-critical applications without
-* further testing.
-*
-* 2. McGraw-Hill licenses and authorizes you to use this software
-* only on a microcomputer located within your own facilities.
-*
-* 3. You will abide by the Copyright Law of the United States.
-*
-* 4. You may prepare a derivative version of this software provided
-* that your source code indicates that it is based on this software and
-* also that you have made changes to it.
-*
-* 5. If you believe that you have found an error in this software,
-* please send email to clrs-java-bugs@mhhe.com.  If you have a
-* suggestion for an improvement, please send email to
-* clrs-java-suggestions@mhhe.com.
-*
-***********************************************************************/
+Source: https://www.cs.virginia.edu/~shelat/4102/wp-content/uploads/2009/08/L8-09-delivered.pdf
 
- 
-
-/** Implements the dynamic-programming algorithm to determine the
-* optimal order in which to multiply a chain of matrices, as
-* described in Section 15.2 of <i>Introduction to Algorithms</i>,
-* Second edition. */
+Matrix chain multiplication: consider
+  A1*A2*A3*A4*A5...An
+  
+  Subproblems will be (A1)(A2...An) or (A1A2)(A3...An)... (A1....An-1)(An)
+  so this is a suffix or a prefix problem, sub problems are in the range of 
+  A1, A1A2, A1A2A3, A2A3A4 etc
+  or more precisely
+  
+  OPT(i, j) = 0 if i == j
+            = min { OPT(i, k) + OPT(k+1, j) + Rows i* columns k * columns j
+            where i <= k < j
+            
+* */
 
 public class MatrixChainMultiplication
 {
-   /** The value of an optimal solution to a subproblem.
-    * <code>m[i][j]</code> is the minimum number of scalar
-    * multiplications needed to compute <i>A</i><sub>i</sub>
-    * <i>A</i><sub>i+1</sub> ... <i>A</i><sub>j</sub>, for 1 &#x2264;
-    * <i>i</i> &#x2264; <i>j</i> &#x2264; <i>n</i>.  Entries
-    * <code>m[i][j]</code> for <i>i</i> = 0, <i>j</i> = 0, or
-    * <i>i</i> &gt; <i>j</i> are unused. */
+	/**
+	 * Matrix that stores the multiplications needed to calculate OPT(i,j)
+	 * M[i][j] = OPT(i,j) i.e. multiply ai to aj.
+	 * This matrix has the optimal solution.
+	 * M[i][j] = 0 if i == j
+	 * M[i][j] = 0 if i < j the matrix is an upper diagonal matrix.
+	 * M[0][j] and M[i][0] are unused, i.e. the 0th row and column are not used.
+	 */
+   
+	
    private int[][] m;
 
    /** The position to split an optimal solution to a subproblem.
@@ -62,78 +49,133 @@ public class MatrixChainMultiplication
     * allocating the instance variables and storing the result in
     * them.
     *
-    * @param p An array of dimensions, where matrix
-    * <i>A</i><sub>i</sub> is <code>p[i-1]</code> x
-    * <code>p[i]</code>, for <i>i</i> = 1, 2, ..., <i>n</i>.
-    */
+	*/
    public MatrixChainMultiplication(int[] p)
    {
-	n = p.length - 1;	// how many matrices are in the chain
-	m = new int[n+1][n+1];	// overallocate m, so that we don't use index 0
-	s = new int[n+1][n+1];	// same for s
-	matrixChainOrder(p);	// run the dynamic-programming algorithm
+	n = p.length ;	// how many matrices are in the chain
+	m = new int[n][n];	// overallocate m, so that we don't use index 0
+	s = new int[n][n];	// same for s
+	int sol = matrixOrder_r(1,n-1,p);
+	 System.out.println("Cost: " + sol + ", Path: " + optimalPath(1,n-1));
+	 for (int idx = 0; idx < n; ++idx)
+	 {
+		 for (int jdx = 0; jdx < n; ++jdx)
+		 {
+			 if (idx == jdx)
+				 m[idx][jdx] = 0;
+			 else
+				 m[idx][jdx] = Integer.MAX_VALUE;
+		 }
+	 }
+	sol =  matrixOrder_m(1,n-1,p);
+	System.out.println("Cost: " + sol + ", Path: " + optimalPath(1,n-1));
+	matrixOrder(p);
+	System.out.println("Cost: " + m[1][n-1] + ", Path: " + optimalPath(1,n-1)); 
    }
-
+   
    /**
-    * Computes an optimal parenthesization of a matrix-chain product,
-    * storing the result in the instance variables.  The instance
-    * variables are assumed to be already allocated.  Implements the
-    * Matrix-Chain-Order procedure on page 336.
-    *
-    * @param p An array of dimensions, where matrix
-    * <i>A</i><sub>i</sub> is <code>p[i-1]</code> x
-    * <code>p[i]</code>, for <i>i</i> = 1, 2, ..., <i>n</i>.
+    * Recursive method for matrix multily cost
+    * Path storage still requires a nxn matrix?
+    * @param i
+    * @param j
+    * @param p
+    * @return
     */
-   private void matrixChainOrder(int[] p)
+   public int matrixOrder_r(int i, int j, int[] p)
    {
-	// Initial the cost for the empty subproblems.
-	for (int i = 1; i <= n; i++)
-	    m[i][i] = 0;
-
-	// Solve for chains of increasing length l.
-	for (int l = 2; l <= n; l++) {
-	    for (int i = 1; i <= n-l+1; i++) {
-		int j = i + l - 1;
-		m[i][j] = Integer.MAX_VALUE;
-
-		// Check each possible split to see if it's better
-		// than all seen so far.
-		for (int k = i; k < j; k++) {
-		    int q = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j];
-		    if (q < m[i][j]) {
-			// q is the best split for this subproblem so far.
-			m[i][j] = q;
-			s[i][j] = k;
-		    }
-		}
-	    }
-	}
+	   int optval = Integer.MAX_VALUE;
+	   if (i == j)
+	   {
+		   return 0;
+	   }
+	   for (int k = i; k < j; ++k)
+	   {
+		   int sol = matrixOrder_r(i, k, p) + matrixOrder_r(k+1,j,p) + 
+				   p[i-1]*p[k]*p[j];
+		   if (sol < optval)
+		   {
+			   optval = sol;
+			   s[i][j] = k;
+		   }
+	   }
+	   return optval;
    }
-
+   
+   public int matrixOrder_m(int i, int j, int[] p)
+   {
+	   if (i == j)
+	   {
+		   m[i][j] = 0;
+		   return m[i][j];
+	   }
+	   if (m[i][j] != Integer.MAX_VALUE)
+		   return m[i][j];
+	   int optval = Integer.MAX_VALUE;
+	   for (int k = i; k < j; ++k)
+	   {
+		   int sol = matrixOrder_m(i, k, p) + matrixOrder_m(k+1, j, p) + 
+				   p[i-1]*p[k]*p[j];
+		   if (sol < m[i][j])
+		   {
+			   m[i][j] = sol;
+			   s[i][j] = k;
+		   }
+	   }
+	   return m[i][j];
+   }
+   public void matrixOrder(int[] p)
+   {
+	   // initializse the whole matrix to be 0, this is already set to 0.
+	   // Bottom to Top
+	   for (int i = m.length-1; i > 0; --i)
+	   {
+		   // Left to right
+		   for (int j = i; j <  m.length; ++j)
+		   {
+			   int minval = Integer.MAX_VALUE;
+			   for (int k = i; k < j; ++k)
+			   {
+				   int sol = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j];
+				   if (sol < minval)
+				   {
+					   minval = sol;
+					   m[i][j] = minval;
+					   s[i][j] = k;
+				   }
+			   }
+		   }
+	   }
+   }
    /**
-    * Returns a <code>String</code> describing an optimal
-    * parenthesization of a subproblem.  Implements the
-    * Print-Optimal-Parens procedure on page 338.
-    *
-    * @param i Index of one array.
-    * @param j Index of another array.
-    * @return A <code>String</code> describing an optimal
-    * parenthesization of <i>A</i><sub>i</sub> <i>A</i><sub>i+1</sub>
-    * ... <i>A</i><sub>j</sub>. */
-   private String printOptimalParens(int i, int j)
-   {
-	if (i == j)
-	    return "A[" + i + "]";
-	else
-	    return "(" + printOptimalParens(i, s[i][j]) +
-		printOptimalParens(s[i][j] + 1, j) + ")";
-   }
+    * 0 0 0 0 0 0 
+    * 0 0 15750 7875 9375 11875 
+    * 0 0 0 2625 4375 7125 
+    * 0 0 0 0 750 2500 
+    * 0 0 0 0 0 1000 
+    * 0 0 0 0 0 0 
+    * ((A[1](A[2]A[3]))(A[4]A[5]))
+    */
+   
 
+   private String optimalPath(int i, int j)
+   {
+	   if (i == j)
+	   {
+		   return "A[" + i + "]";
+	   }
+	   else
+	   {
+		   return "(" + optimalPath(i, s[i][j]) + optimalPath(s[i][j]+1,j) + ")";
+	   }
+   }
+   
+
+   
    /** Returns a <code>String</code> describing an optimal
     * parenthesization of the entire matrix chain. */
    public String toString()
    {
-	return printOptimalParens(1, n);
+	return optimalPath(1, n-1);
    }
    
    public static void main(String[] args)
@@ -144,9 +186,3 @@ public class MatrixChainMultiplication
 	   
    }
 }
-
-//$Id: MatrixChainMultiply.java,v 1.1 2003/10/14 16:56:20 thc Exp $
-//$Log: MatrixChainMultiply.java,v $
-//Revision 1.1  2003/10/14 16:56:20  thc
-//Initial revision.
-//
