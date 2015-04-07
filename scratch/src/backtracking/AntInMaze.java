@@ -27,7 +27,7 @@ public class AntInMaze
     };
     static int[][] solution = {
         {0, 0, 0, 0, 0},
-        {0, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0}
@@ -61,24 +61,41 @@ public class AntInMaze
             return false;
         return true;
     }
+
+    private static boolean isASolution(int row, int col)
+    {
+        if (row == solution.length-1 && col == solution.length-1)
+        {
+            return true;
+        }
+        return false;
+    }
     public static boolean solve(int row, int col)
     {
-        if (row == 4 && col == 4)
+        /**
+         * If this is a solution, mark the solution and return true
+         */
+        if (isASolution(row,col))
         {
             solution[row][col] = 1;
             printPath();
             return true;
         }
+
         // for given row/column position.  mark this as visited.
         solution[row][col] = 1;
         // two directions are possible , down and right.
 
         // try to move down
         if (canmove(row, col, DOWN) && solve(row+1, col))
+        {
             return true;
+        }
         // try to move forward
         if (canmove(row, col, RIGHT) && solve(row, col+1))
+        {
             return true;
+        }
 
         // if all of them fail, unmark the location and return false
         solution[row][col] = 0;
@@ -88,5 +105,17 @@ public class AntInMaze
     {
         boolean status = solve(0,0);
         System.out.println("Solution: " + status);
+        printSolution();
+    }
+    private static void printSolution()
+    {
+        for (int i = 0; i < solution.length; ++i)
+        {
+            for (int j = 0; j < solution[i].length; ++j)
+            {
+                System.out.print(solution[i][j] + " ");
+            }
+            System.out.println("");
+        }
     }
 }
