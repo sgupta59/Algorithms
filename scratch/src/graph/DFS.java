@@ -17,28 +17,47 @@ public class DFS {
 	static Map<Integer,String> backEdges = new HashMap<Integer,String>();
 
 	static int counter = 0;
+
+	/**
+	 * DFS traversal recursive, as specified in CLRS.
+	 * Node is marked visited when it is removed from the stack (i.e. the recursive function is called)
+	 * Its parent is set when it is first discovered
+	 * @param g
+	 * @param visited
+	 * @param parent
+	 * @param u
+	 */
     public static void dfsTraversal_Recursive(int[][] g,   boolean[] visited, int[] parent, int u)
     {
+        // mark the node as visited.
     	visited[u] = true;
     	for (int v = 0; v < g.length; ++v)
     	{
     		if (g[u][v] != 0)
     		{
+    		    // If (u,v) is an edge, and v is not visited, then visit v
     			if (!visited[v])
     			{
+    			    // set v's parent as u. This is a tree edge
     				parent[v] = u;
     				printEdge(u, v, "Tree");
     				dfsTraversal_Recursive(g, visited, parent, v);
-    				
+
     			}
     			else if (v != parent[u])
     			{
+    			    // if v is visited, that means v was visited before u. If v is not u's parent, then v is a
+    			    // back edge of some type.
     				printEdge(u, v, "Back");
     			}
     		}
     	}
     }
     /*
+     * The right way to do a stack based DFS traversal.
+     * When the node is removed from the stack, it is marked as visited. Its parent is set at that point.
+     * Then the children are processed.
+     *
      * NOTE: The edges are processed in reverse order to get the same dfs tree as a recursive dfs tree.
      * look at the line marked [EDGE TRAVERSAL]
      */
@@ -52,39 +71,54 @@ public class DFS {
     	{
     		int u = stack.pop();
 
-    		if (visited[u])
-    			continue;
-    		visited[u]=true;
-    		if (prev != -1)
-    	    {
-    			printEdge(prev, u, "Tree");
-    			parents[u] = prev;
-    	    }
-    		//[EDGE TRAVERSAL]
-    		// if v is traversed from 0 to g.length-1, then the dfs tree is different and the same node
-    		// generates two back edges
-    		for (int v = g.length-1; v >= 0 ; --v)
+    		if (!visited[u])
     		{
-    			if (g[u][v] != 0 )
-    			{
-    				if (visited[v] == false)
-    				{  					 
-    									
-    					stack.push(v);
-    				}
-    				else if (parents[u] != v)
-    				{
-    					printEdge(u,v, "back");
-    				}
-    				
-    			}
+
+    		    visited[u]=true;
+    		    if (prev != -1  )
+    		    {
+    		        if (parents[u] == -1)
+    		            parents[u] = prev;
+    		         printEdge(parents[u], u, "Tree");
+    		    }
+    		    stack.push(u);
+    		    //[EDGE TRAVERSAL]
+    		    // if v is traversed from 0 to g.length-1, then the dfs tree is different and the same node
+    		    // generates two back edges
+    		    for (int v = g.length-1; v >= 0 ; --v)
+    		    {
+    		        if (g[u][v] != 0 )
+    		        {
+
+    		            if (visited[v] == false)
+    		            {
+    		                stack.push(v);
+    		                parents[v] = u;
+    		            }
+    		            /*else if (parents[u] != v)
+    		            {
+    		                printEdge(u,v, "back");
+    		            }*/
+
+    			    }
+    		    }
+    		    prev = u;
     		}
-    		prev = u;
+    		else
+    		{
+    		    //if (prev != -1)
+                {
+                    if (g[prev][u] == 1)
+                        printEdge(prev, u, "Back Edge");
+                    prev = u;
+                }
+    		}
+
     	}
     }
     public static void dfs_bfs_based(int[][] g, boolean[] visited, int[] parents,int i)
     {
-    	
+
     	Stack<Integer> stack = new Stack<Integer>();
     	// mark the vertex as visited and put it in the queue
     	stack.push(i);
@@ -119,11 +153,11 @@ public class DFS {
      * @param i
      */
     public static void bfsTraversal_normal1(int[][] g, boolean[] visited, int[] parents,int i)
-    { 	
+    {
     	Queue<Integer> queue = new LinkedList<Integer>();
     	// mark the vertex as visited and put it in the queue
     	queue.offer(i);
-    	
+
     	while (queue.isEmpty() == false)
     	{
     		int u = queue.poll();
@@ -151,7 +185,7 @@ public class DFS {
     	}
     }
     public static void bfsTraversal_normal(int[][] g, boolean[] visited, int[] parents,int i)
-    { 	
+    {
     	Queue<Integer> queue = new LinkedList<Integer>();
     	// mark the vertex as visited and put it in the queue
     	queue.offer(i);
@@ -187,6 +221,7 @@ public class DFS {
 			visited[idx] = false;
 			parent[idx] = -1;
 		}
+		dfs_stack_based(g,visited,parent,2);
 		for (int idx = 0; idx < visited.length; ++idx)
 		{
 			if (!visited[idx])
@@ -223,28 +258,64 @@ public class DFS {
 	}
 	public static void main(String[] args)
 	{
-		
-		mapping.put(0, "s");
-		mapping.put(1, "a");
-		mapping.put(2, "b");
-		mapping.put(3, "c");
-		mapping.put(4, "d");
-		mapping.put(5, "e");
-		mapping.put(6, "f");
-		mapping.put(7, "g");
-		mapping.put(8, "h");
-		// Graph is from http://11011110.livejournal.com/279880.html
-		int[][] g  = 
-		     
-			{{0, 1, 0, 1, 0, 0, 0, 0, 0} , 
-			 {1, 0, 1, 0, 1, 0, 0, 0, 0} ,
-			 {0, 1, 0, 0, 0, 1, 0, 0, 0} ,
-			 {1, 0, 0, 0,  1, 0, 1, 0, 0} ,
-			 {0, 1, 0, 1,  0, 1, 0, 1, 0} , /* 4 */
-			{0, 0, 1, 0,  1, 0, 0, 0, 1} ,
-			{0, 0, 0, 1, 0, 0, 0, 1, 0} ,
-			{0, 0, 0, 0, 1, 0, 1, 0, 1} ,
-			{0, 0, 0, 0, 0, 1, 0, 1, 0} };
+
+	    //int[][] g = graph1();
+	    int[][] g =graph3();
 		dfsTraversal(g);
 	};
+	public static int[][] graph2()
+	{
+        mapping.put(0, "0");
+        mapping.put(1, "1");
+        mapping.put(2, "2");
+        mapping.put(3, "3");
+	    int[][] g =
+	    {
+	        {0, 1, 1, 0},
+	        {0, 0, 1, 0},
+	        {1, 0, 0, 1},
+	        {0, 0, 0, 1}
+	    };
+	    return g;
+	}
+	public static int[][] graph3()
+    {
+        mapping.put(0, "0");
+        mapping.put(1, "1");
+        mapping.put(2, "2");
+        mapping.put(3, "3");
+        int[][] g =
+        {
+            {0, 1, 1, 0},
+            {0, 0, 1, 0},
+            {1, 0, 0, 1},
+            {0, 0, 0, 1}
+        };
+        return g;
+    }
+	public static int[][] graph1()
+	{
+	        mapping.put(0, "s");
+	        mapping.put(1, "a");
+	        mapping.put(2, "b");
+	        mapping.put(3, "c");
+	        mapping.put(4, "d");
+	        mapping.put(5, "e");
+	        mapping.put(6, "f");
+	        mapping.put(7, "g");
+	        mapping.put(8, "h");
+	        // Graph is from http://11011110.livejournal.com/279880.html
+	        int[][] g  =
+
+	            {{0, 1, 0, 1, 0, 0, 0, 0, 0} ,
+	             {1, 0, 1, 0, 1, 0, 0, 0, 0} ,
+	             {0, 1, 0, 0, 0, 1, 0, 0, 0} ,
+	             {1, 0, 0, 0,  1, 0, 1, 0, 0} ,
+	             {0, 1, 0, 1,  0, 1, 0, 1, 0} , /* 4 */
+	             {0, 0, 1, 0,  1, 0, 0, 0, 1} ,
+	             {0, 0, 0, 1, 0, 0, 0, 1, 0} ,
+	             {0, 0, 0, 0, 1, 0, 1, 0, 1} ,
+	             {0, 0, 0, 0, 0, 1, 0, 1, 0} };
+	        return g;
+	}
 }

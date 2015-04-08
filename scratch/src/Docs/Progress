@@ -2,6 +2,18 @@
 
 [4/8/2015]      https://algorithmcafe.wordpress.com/
                 http://www.sanfoundry.com/cpp-program-find-longest-path-dag/
+                https://github.com/pedrovgs/Algorithms/blob/master/src/main/java/com/github/pedrovgs/problem6/MergeSortedArrays.java
+                http://www.sanfoundry.com/java-programming-examples-hard-graph-problems-algorithms/
+                http://www.spoj.com/problems/ABCPATH/
+                http://www.cs.rit.edu/~rlc/Courses/Algorithms/ClassNotes/Graphs.pdf
+                http://web.stanford.edu/class/archive/cs/cs161/cs161.1138/
+                http://www.geeksforgeeks.org/tag/Greedy-Algorithm/
+                http://tech-queries.blogspot.com/2011/07/count-number-of-blobs.html
+                http://tutorials.jenkov.com/java-concurrency/semaphores.html
+                http://www.binarymath.info/addition-subtraction.php
+                http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/
+                
+                
 [3/21/2015]     Travelling Salesman Problem complete. Need:
                 Generate subsets from a give set code.
                 Generate all permutations of a set.
