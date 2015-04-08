@@ -50,14 +50,10 @@ public class AntInMaze
             row = row+1;
             if (row > 4)
                 return false;
-            if (maze[row][col] == 0)
-                return false;
             return true;
         }
         col = col+1;
         if (col > 4)
-            return false;
-        if (maze[row][col] == 0)
             return false;
         return true;
     }
@@ -86,18 +82,22 @@ public class AntInMaze
         solution[row][col] = 1;
         // two directions are possible , down and right.
 
-        // try to move down
-        if (canmove(row, col, DOWN) && solve(row+1, col))
+        // If can move down, check if there is a wall and if not try to solve
+        if (canmove(row, col, DOWN) && maze[row+1][col] == 1 && solve(row+1, col))
         {
+        	// When returning true, mark the solution. Here it is not needed as the solution
+        	// matrix is already marked as success.
             return true;
         }
         // try to move forward
-        if (canmove(row, col, RIGHT) && solve(row, col+1))
+        if (canmove(row, col, RIGHT) && maze[row][col+1] == 1 && solve(row, col+1))
         {
+        	// When returning true, mark the solution. Here it is not needed as the solution
+        	// matrix is already marked as success.
             return true;
         }
 
-        // if all of them fail, unmark the location and return false
+        // Solution failed at this point, so unmark the solution matrix.
         solution[row][col] = 0;
         return false;
     }
