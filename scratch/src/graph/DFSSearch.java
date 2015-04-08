@@ -2,7 +2,7 @@ package graph;
 
 public class DFSSearch {
 
-	
+
 	public static void DFSUtil(Graph g, int u)
 	{
 		g.color[u] = Graph.GRAY;
@@ -16,7 +16,7 @@ public class DFSSearch {
 				if (g.color[v] == Graph.WHITE)
 				{
 					g.parent[v] = u;
-					g.color[v] = Graph.GRAY;
+					//g.color[v] = Graph.GRAY;
 					DFSUtil(g, v);
 				}
 				else if (g.color[v] == Graph.BLACK)
@@ -56,24 +56,24 @@ public class DFSSearch {
 	public static void main(String[] args)
 	{
 		Graph g = new Graph(8,true);
-		
+
 		g.addEdge(0,4);
-		
+
 		g.addEdge(1, 0);
 		g.addEdge(1, 5);
-		
+
 		g.addEdge(2,1);
 		g.addEdge(2,5);
-		
+
 		g.addEdge(3,6);
 		g.addEdge(3,7);
-		
+
 		g.addEdge(4,1);
 		g.addEdge(5,4);
-		
+
 		g.addEdge(6,5);
 		g.addEdge(6,2);
-		
+
 		g.addEdge(7,6);
 		g.addEdge(7,3);
 		DFS(g);

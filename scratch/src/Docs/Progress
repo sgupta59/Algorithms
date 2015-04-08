@@ -1,5 +1,24 @@
 
- 
+
+[4/8/2015]      https://algorithmcafe.wordpress.com/
+                http://www.sanfoundry.com/cpp-program-find-longest-path-dag/
+[3/21/2015]     Travelling Salesman Problem complete. Need:
+                Generate subsets from a give set code.
+                Generate all permutations of a set.
+                implement travelling salesman problem.
+[3/20/2015]     Union find data structure and kruskel's algorithm
+
+http://www.huffingtonpost.com/2015/03/20/22-tips-life_n_6906880.html
+General Interview Links
+    5. https://algorithmcafe.wordpress.com/
+    0. https://sites.google.com/site/spaceofjameschen/home [current]
+    1. http://tech-queries.blogspot.com/2011/01/nuts-and-bolts-algorithm.html
+    2. http://exceptional-code.blogspot.com/2012/02/solving-boggle-game-recursion-prefix.html
+    3. https://github.com/andreis/interview
+    4. [Hacking Google Interview]    https://courses.csail.mit.edu/iap/interview/materials.php
+GRAPH ALGORITHMS
+    1. http://www.disp.uniroma2.it/users/italiano/shortestpaths.pdf
+                    https://algorithmcafe.wordpress.com/
 Minimum Spanning Trees:    http://www.cse.ust.hk/faculty/golin/COMP271Sp03/Notes/MyL10.pdf
                            http://www.columbia.edu/~cs2035/courses/ieor6614.S11/mst.pdf
                            http://www.cs.princeton.edu/~rs/AlgsDS07/14MST.pdf
@@ -32,3 +51,4 @@ Virginia                   https://www.cs.virginia.edu/~shelat/4102/
 Stanford Lectures          http://web.stanford.edu/class/archive/cs/cs161/cs161.1138/
 
 GIT Hub Problems           https://github.com/pedrovgs/Algorithms
+                           https://algorithmcafe.wordpress.com/

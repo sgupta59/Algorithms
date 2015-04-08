@@ -4,6 +4,7 @@ General
 	http://web.cs.ucdavis.edu/~gusfield/cs122f10/videolist.html         video
 	https://courses.engr.illinois.edu/cs498374/fa2014/lectures.html     video
 	https://courses.engr.illinois.edu/cs498dl1/sp2015/standards.html
+	https://algorithmcafe.wordpress.com/ 
 Books
 
 	https://github.com/vhf/free-programming-books
