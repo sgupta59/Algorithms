@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001-2015 Gamma Technologies, Inc. All Rights Reserved.
  */
-package threading.semaphores.simple;
+package threading.signaling;
 
 /**
  *  http://tutorials.jenkov.com/java-concurrency/semaphores.html

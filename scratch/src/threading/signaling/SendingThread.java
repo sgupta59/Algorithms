@@ -5,9 +5,9 @@
  *
  * Copyright (c) 2001-2015 Gamma Technologies, Inc. All Rights Reserved.
  */
-package threading.semaphores;
+package threading.signaling;
 
-import threading.semaphores.simple.SimpleSignalingSemaphore;
+
 
 /**
  *
