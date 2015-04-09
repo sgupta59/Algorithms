@@ -215,6 +215,9 @@ public class DFS {
     }
     /** This does not work as the children have to be marked as visited as soon as they are added to the
      * queue, in this method, children are marked visited when they are popped and not added.
+     * This causes u'-> v as a tree edge when u->v is alread a tree edge, i.e v has been discovered by u and is in the queue to be processed
+     * where u' has been discovered after u, so
+     *
      * @param g
      * @param visited
      * @param parents
@@ -283,7 +286,7 @@ public class DFS {
     		}
     	}
     }
-	public static void dfsTraversal(int[][] g, int start)
+	public static void dfsTraversal(int[][] g )
 	{
 		boolean visited[] = new boolean[g.length];
 		int[] parent = new int[g.length];
@@ -304,7 +307,7 @@ public class DFS {
         //int time = 0;
 		//dfs_stack_based1(g,visited,parent,color, start, finish, time, 2);
 		//dfs_stack_simple(g, visited,parent,start);
-        bfsTraversal_normal(g,visited, parent,start);
+        bfsTraversal_normal1(g,visited, parent,start);
 		for (int idx = 0; idx < visited.length; ++idx)
 		{
 			if (!visited[idx])
@@ -345,7 +348,7 @@ public class DFS {
 	    //int[][] g = graph1();
 	    int[][] g =graph1();
 
-		dfsTraversal(g, start);
+		dfsTraversal(g);
 		System.out.println("Test status:" + isValid());
 	}
 	public static int[][] graph2()
