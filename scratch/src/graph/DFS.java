@@ -97,8 +97,9 @@ public class DFS {
     		        if (g[u][v] != 0 )
     		        {
     		            // if v is not visited, mark its parent. and add v to the stack, v node is not marked visited here
-    		            // so the parent gets updated if there is some other path to this node. different than bfs where the node
-    		            // can be marked visited at this point
+    		            // Since v is not marked visited here, (unlike bfs), if there is another path to v (from v'), then
+    		            // v' will become parent of v.then v will be added on top of the stack and processed before u's
+    		            // processing finishes.
     		            if (visited[v] == false)
     		            {
     		                stack.push(v);
@@ -214,7 +215,7 @@ public class DFS {
     	}
     }
     /** This does not work as the children have to be marked as visited as soon as they are added to the
-     * queue, in this method, children are marked visited when they are popped and not added.
+     * queue, in this method, children are marked visited when they are polled and not added.
      * This causes u'-> v as a tree edge when u->v is alread a tree edge, i.e v has been discovered by u and is in the queue to be processed
      * where u' has been discovered after u, so
      *
@@ -273,6 +274,8 @@ public class DFS {
     			{
     				if (visited[v] == false)
     				{
+    				    // mark v as visited here. This is what makes bfs works as at this point, v has been marked visited
+    				    // and its parent set. The parent can not be reset again and v will not be added to teh queue again.
     					visited[v]=true;
     					parents[v] = u;
     					printEdge(u, v, "Tree");
