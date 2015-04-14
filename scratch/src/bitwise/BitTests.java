@@ -23,6 +23,13 @@ package bitwise;
  * 0 ^ 0 = 0
  *
  * 1. (X^Y)^Y is X
+ * 2. X-1 turns off all lower 0 bits to 1 and the 1 bit to 0, e.g.
+ *    (1101-1) = 1100
+ *    (1110-1) = 1101
+ * 3. -x turns on all right most bits after 1 bit to 1, and the 1 bit to 0 and flips the bits to left of the 1 bit to reverse.
+ *    -x = ~x+1
+ * 3. 2s complement math
+ *    -x is same as ~x+1
  *
  * References:
  *
@@ -68,13 +75,58 @@ public class BitTests
         //String num = getBinaryString(num1);
         return num1;
     }
-    public static int leastSignificantOne(int x)
+
+    /**
+    * Isolate the right most bit,
+    * This bit hack finds the rightmost 1-bit and sets all the other bits to 0. The end result has only that one rightmost 1-bit set
+    * This bit hack wworks because of 2s complement system.
+    * 2s complement: -x = ~x + 1
+    *
+    * consider
+    * bn, bn-1, bn-2.... bi, bi-1, bi-2, ... b0
+    *   where bi is the rightmost bit that is 1,
+    *   bi-1, bi-2... are all 0 as bi is the right most.
+    *   bn, bn-1, bn-2... bi+1 are what ever they are.
+    *
+    * Now -x = ~x+1 (2s complement), so
+    * ~x will flip all bits in above including bi which will not be 0 and bi-1, bi-2.. will be 1
+    * ~x+1 will make bi back to 1
+    * x & ~x+1 will isolate the bi bit.
+    *
+    * Essentially, ~x+1 will make all bits after rightmost 1 as 1 and the rightmost 1 as 0, an & will make all of these 0.
+    */
+    public static int isolateRightMost1Bit(int x)
     {
         System.out.println(" x: " + getBinaryString(x));
         System.out.println("-x: " + getBinaryString(-x));
         int r = x & -x;
         System.out.println("r: " + getBinaryString(r));
         return r;
+    }
+
+    public static int isolateRightmost0Bit(int x)
+    {
+        System.out.println(" x: " + getBinaryString(x));
+        System.out.println("-x: " + getBinaryString(-x));
+        int r = ~x & (x+1);
+        System.out.println("r: " + getBinaryString(r));
+        return r;
+    }
+    /**
+     * Take the rightmost 1 bit and propagate it to the right.
+     * 01010000--> 01011111
+     *
+     * Remember, x-1 turns on all bits after rightmost bit to 1 and the rightmost 1 bit to 0, i.e.
+     * if x = 01010000, x-1 =
+     * x-1  = 01001111
+     * |    = 01011111
+     *
+     * Fails for all 0's, i.e. 00000 right propagate gives 11111
+     */
+    public static void rightPropagate1Bit()
+    {
+        int x = 8;
+        int y = x | (x-1);
     }
     /**
      * Find minimum of two integers.
@@ -190,6 +242,11 @@ public class BitTests
      * & 1100011
      *   1100000
      *
+     *   example
+     *   1100100 , expected: 1100000
+     *   1100100-1
+     * = 1100011
+     * & 1100011--> Result.
      * e.g.
      */
     public static void turnOffRightMost()
@@ -364,5 +421,15 @@ public class BitTests
     public static int toggleNthBit(int x, int bit)
     {
         return (x^(1<<bit));
+    }
+
+    /**
+
+     * 01011000. to isolate the right most bit, i need
+     * 00001000
+     */
+    public static void isolateRightMostbit()
+    {
+
     }
 }
