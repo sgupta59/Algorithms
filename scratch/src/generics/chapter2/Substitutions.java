@@ -8,6 +8,7 @@
 package generics.chapter2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -82,6 +83,7 @@ public class Substitutions
         // Different than sibstitutiontest where List<Number> num = new ArrayList<Integer>() gave compile error
         List<? extends Number> nums1 = new ArrayList<Integer>();
         // gives a compile time error.nums1.add(1);
+        // This is because even though nums1 references an array of Integers, if the above was legal, nums1.add(3.14) could be performed.
     }
 
     public static <T> void copyAll(List<? super T> dest, List<? extends T> source)
@@ -89,8 +91,70 @@ public class Substitutions
         for (int i = 0; i < source.size(); ++i)
             dest.add(source.get(i));
     }
+
+    /**
+     * Get principle example, can get from a list that extends numbers as all objects will be treated as numbers.
+     * @param numbers
+     * @return
+     */
+    public static double getPrinciple(List<? extends Number> numbers)
+    {
+        double val = 0.0;
+        for (Number num : numbers)
+            val += num.doubleValue();
+        return val;
+
+    }
+
+    public static void getPrincipleTest()
+    {
+        List<Integer> ints = Arrays.asList(1,2,3);
+        assert getPrinciple(ints) == 6.0;
+
+        List<Double> doubles = Arrays.asList(2.78,3.14);
+        assert getPrinciple(doubles) == 5.92;
+    }
+
+    /**
+     * Example of put principle, adds a value to any list that has items of super of Integer.
+     * @param list
+     * @param count
+     */
+    public static void putPrincipleExample(List<? super Integer> list, int count)
+    {
+        for (int i = 0; i < count; ++i)
+            list.add(i);
+    }
+
+    public static void putPrincipleTest()
+    {
+        // create a list of integers
+        List<Integer> ints = new ArrayList<Integer>();
+        putPrincipleExample(ints,5);
+        assert ints.toString() == "[0, 1, 2, 3, 4]";
+
+        List<Number> nums = new ArrayList<Number>();
+        putPrincipleExample(nums,5);
+        nums.add(3.14);
+        assert nums.toString() == "[0, 1, 2, 3, 4, 3.14]";
+
+        List<Object> objects = new ArrayList<Object>();
+        putPrincipleExample(objects, 5);
+        objects.add("number");
+        assert objects.toString().equals("[0, 1, 2, 3, 4, numbera]");
+    }
+
+    /**
+     * When doing both get and put, do not use wildcards.
+     */
+    public static double GetPutExample(List<Number> nums, int n)
+    {
+        putPrincipleExample(nums, n);
+        return getPrinciple(nums);
+
+    }
     public static void main(String[] args)
     {
-
+        putPrincipleTest();
     }
 }
