@@ -1,8 +1,8 @@
 package graph;
 
-import java.util.Comparator;
 
-public class Edge implements Comparator<Edge>{
+
+public class Edge implements Comparable<Edge> {
 
 
 	public int u;
@@ -16,12 +16,15 @@ public class Edge implements Comparator<Edge>{
 		this.w = w;
 	}
 
-    @Override
-    public int compare(Edge arg0, Edge arg1)
-    {
-        // TODO Auto-generated method stub
-        if (arg0.w == arg1.w)
-            return 0;
-        return arg0.w < arg1.w ? -1 : 1;
-    }
+	@Override
+	public int compareTo(Edge arg0) {
+		if (this == arg0)
+			return 0;
+		Edge e2 = (Edge)arg0;
+		if (w == e2.w)
+			return 0;
+		return w < e2.w ? -1 : 1;
+	}
+
+    
 }

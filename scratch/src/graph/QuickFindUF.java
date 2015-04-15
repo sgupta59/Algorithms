@@ -68,20 +68,20 @@ public class QuickFindUF
      * @param p
      * @return
      */
-    public int union(int p, int q)
+    public boolean union(int p, int q)
     {
         // find the component id of p and q
         int i = find(p);
         int j = find(q);
         if (i == j)
-            return i;
+            return false;
         for (int idx = 0; idx < N; ++idx)
         {
             if (id[idx] == i)
                 id[idx] = j;
         }
         --count;
-        return 0;
+        return true;
     }
 
     public static void main(String[] args)

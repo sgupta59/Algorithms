@@ -84,6 +84,8 @@ public class Graph {
 	public void addEdge(int u, int v, int weight)
 	{
 		adj[u][v] = weight;
+		//if (isDirected == false)
+		//	adj[v][u] = weight;
 		Edge e = new Edge(u,v,weight);
 		edgeList.add(e);
 	}
@@ -146,5 +148,10 @@ public class Graph {
 	public void printEdge(int u, int v)
 	{
 	    System.out.println("("+ nodenameMap.get(u) + "," + nodenameMap.get(v) + ")");
+	}
+	
+	public ArrayList<Edge> edges()
+	{
+		return edgeList;
 	}
 }
