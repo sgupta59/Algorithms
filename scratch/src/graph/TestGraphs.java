@@ -19,11 +19,30 @@ public   class TestGraphs
     public static Graph clrs_graph_1 = null;
     public static Graph kruskalGraph_1 = null;
     public static Graph kruskalGraph_2 = null;
+    public static Graph kClusterGraph1 = null;
     static
     {
     	createClrsGraph1();
     	createKruskalGraph1();
     	createKruskalGraph2();
+    	createKClusterGraph1();
+    }
+    public static void createKClusterGraph1()
+    {
+    	kClusterGraph1 = new Graph(9,false);
+    	kClusterGraph1.addEdge(1 ,2 ,4);
+    	kClusterGraph1.addEdge(2 ,3 ,8);
+    	kClusterGraph1.addEdge(3 ,4 ,7);
+    	kClusterGraph1.addEdge(4 ,5 ,9);
+    	kClusterGraph1.addEdge(5 ,6 ,10);
+    	kClusterGraph1.addEdge(6 ,3 ,4);
+    	kClusterGraph1.addEdge(6,7, 2);
+    	kClusterGraph1.addEdge(7,8 ,1);
+    	kClusterGraph1.addEdge(8 ,1, 8);
+    	kClusterGraph1.addEdge(8 ,2 ,11);
+    	kClusterGraph1.addEdge(8 ,0 ,7);
+    	kClusterGraph1.addEdge(0 ,3 ,2);
+    	kClusterGraph1.addEdge(0, 7 ,6);
     }
     public static void createKruskalGraph2()
     {

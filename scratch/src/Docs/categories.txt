@@ -41,6 +41,7 @@ JVM/Garbage Collection
         http://blog.ragozin.info/2013/11/hotspot-jvm-garbage-collection-options.html
 
 General Interview Links
+	http://codingrecipies.blogspot.com/2013/09/max-spacing-for-k-order-cluster.html
     5. https://algorithmcafe.wordpress.com/
     0. https://sites.google.com/site/spaceofjameschen/home [current]
     1. http://tech-queries.blogspot.com/2011/01/nuts-and-bolts-algorithm.html

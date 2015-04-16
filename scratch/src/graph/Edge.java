@@ -26,5 +26,8 @@ public class Edge implements Comparable<Edge> {
 		return w < e2.w ? -1 : 1;
 	}
 
-    
+    public String toString()
+    {
+    	return "(" + u + "," + v + "," + w + ")";
+    }
 }

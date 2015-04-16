@@ -20,7 +20,7 @@ public class QuickFindUF
     // ids of different components.
     private final int[] id;
 
-    private int count;
+    private int _count;
 
     public QuickFindUF(int n)
     {
@@ -29,9 +29,13 @@ public class QuickFindUF
         // initially all componets are disconnected
         for (int i = 0; i < N; ++i)
             id[i] = i;
-        count = N;
+        _count = N;
     }
 
+    public int count()
+    {
+    	return _count;
+    }
     /**
      * Return the component id for this component.
      * O(1) operation.
@@ -80,7 +84,7 @@ public class QuickFindUF
             if (id[idx] == i)
                 id[idx] = j;
         }
-        --count;
+        --_count;
         return true;
     }
 

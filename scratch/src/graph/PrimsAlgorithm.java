@@ -9,6 +9,20 @@ package graph;
 public class PrimsAlgorithm {
 
 	/**
+	 * RElax the distance on edge (u,v)
+	 * @param g
+	 * @param u
+	 * @param v
+	 */
+	public static void relax(int[][] g, int[] d,int[] p, int u, int v)
+	{
+		if (g[u][v] < d[u])
+		{
+			d[v] = g[u][v];
+			p[u] = u;
+		}
+	}
+	/**
 	 * Array based prims algorithm.
 	 * The complexity is O(V^2+VE) = O(V^2).
 	 * @param g
@@ -36,23 +50,20 @@ public class PrimsAlgorithm {
 		for (int idx = 0; idx < g.length-1; ++idx)
 		{
 			// O(N) here , for heap it will be O(logn) --> V*V or V*LogV
-			int minid = findMinIndex(d,visited);
+			int u = findMinIndex(d,visited);
 			// mark this as visited.
-			visited[minid] = true;
+			visited[u] = true;
 			// for all adjacent edges to minid
-			for (int jdx = 0; jdx < g.length; ++jdx)
+			for (int v = 0; v < g.length; ++v)
 			{
 				// if there is an edge between idx and jdx
 				// and the jdx vertex has not been visited.
 				// for each edge, that means V*E or  E*logV
 				// This is decrease key operation, done once per edge, hence E*LogV
-				if (g[minid][jdx] != 0 && !visited[jdx])
+				if (g[u][v] != 0 && !visited[v])
 				{
-					if (g[minid][jdx] < d[jdx])
-					{
-						d[jdx] = g[minid][jdx];
-						p[jdx] = minid;
-					}
+					relax(g,d,p,u,v);
+					
 				}
 			}
 		}
