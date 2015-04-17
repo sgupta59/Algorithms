@@ -1,13 +1,12 @@
 package greedy;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
  * http://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/
  * http://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding-set-2/
- * 
+ *
  * @author kg
  *
  */
@@ -21,7 +20,7 @@ public class HuffmanEncoding {
 		{
 			pq.add(new HuffmanNode(frequency[i],data[i]));
 		}
-		
+
 		while (pq.size() != 1)
 		{
 			HuffmanNode left = pq.poll();
@@ -36,16 +35,18 @@ public class HuffmanEncoding {
 		printHuffmanCodes(root, codes,0);
 		System.out.println("");
 	}
-	
+
 	public static void printHuffmanCodes(HuffmanNode root, int[] codes, int top)
 	{
 		if (root.left() != null)
 		{
-			printHuffmanCodes(root.left(), codes, top);
+		    codes[top] = 0;
+			printHuffmanCodes(root.left(), codes, top+1);
 		}
 		if (root.right() != null)
 		{
-			printHuffmanCodes(root.right(), codes, top);
+		    codes[top] = 1;
+			printHuffmanCodes(root.right(), codes, top+1);
 		}
 		if (root.left() == null && root.right() == null)
 		{
@@ -53,10 +54,10 @@ public class HuffmanEncoding {
 			printArray(codes,top);
 		}
 	}
-	
+
 	public static void printArray(int[] codes, int top)
 	{
-		for (int i = 0; i < codes.length; ++i)
+		for (int i = 0; i < top; ++i)
 		{
 			System.out.print(codes[i]);
 		}
@@ -66,44 +67,11 @@ public class HuffmanEncoding {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*Queue<Integer> intpq = new PriorityQueue(6);
-		Random rand = new Random();
-		for (int i = 0; i < 7; ++i)
-			intpq.add(new Integer(rand.nextInt(100)));
-		for (int i = 0; i < 7; ++i)
-		{
-			Integer in = intpq.poll();
-			System.out.println("Processing Integer: " + in);
-			intpq.offer(in);
-		}*/
-		Queue<HuffmanNode> pq = new PriorityQueue<HuffmanNode>(6);
-		/*Comparator<HuffmanNode> nodecomp = new Comparator<HuffmanNode>() {
 
-			@Override
-			public int compare(HuffmanNode arg0, HuffmanNode arg1) {
-				// TODO Auto-generated method stub
-				if (arg0==arg1)
-					return 0;
-				return arg0.frequency() > arg1.frequency() ? -1 : 0;
-			}
-			
-		};
-		pq = new PriorityQueue<HuffmanNode>(6,nodecomp);*/
-		pq.add(new HuffmanNode(5,'c'));
-		pq.add(new HuffmanNode(1,'c'));
-		pq.add(new HuffmanNode(6,'c'));
-		pq.add(new HuffmanNode(9,'c'));
-		pq.add(new HuffmanNode(2,'c'));
-		while (!pq.isEmpty())
-		{
-			HuffmanNode node = pq.poll();
-			System.out.println("");
-		}
-		
 		char[] data = {'a', 'b', 'c', 'd', 'e', 'f'};
 		int freq[] = {5,9,12,13,16,45};
 		HuffmanCodeTest(data, freq);
 	}
-	 
+
 
 }

@@ -1,10 +1,15 @@
+4/17/2016       [Analysis Lectures Quite Good   ]   http://www.cs.umd.edu/~meesh/351/ 
+                [Build Heap Analysis Quite Good ]   http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
 4/16/2016
                 [ Huffman Encoding    ] http://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/
                 [ Dynamic Programming ] http://www.ime.unicamp.br/~andreani/MS515/capitulo7.pdf 
-                [ JVM Stuff           ] https://plumbr.eu/blog/garbage-collection/what-garbage-collector-are-you-using
-                                        http://www.techpaste.com/2012/02/default-jvm-settings-gc-jit-java-heap-sizes-xms-xmx-operating-systems/#more-3569
-                                        http://www.fasterj.com/articles/oraclecollectors1.shtml
-                                        http://java-performance.com/
+                [ JVM Stuff           ] 
+                        https://plumbr.eu/blog/garbage-collection/what-garbage-collector-are-you-using
+                        http://www.techpaste.com/2012/02/default-jvm-settings-gc-jit-java-heap-sizes-xms-xmx-operating-systems/#more-3569
+                        http://www.fasterj.com/articles/oraclecollectors1.shtml
+                        http://java-performance.com/
+                [ JVM Good explanation of diff collectors and process memory ] 
+                        http://www.stefankrause.net/wp/?p=14
                                         
 4/15/2015
                 http://courses.cs.washington.edu/courses/cse326/00wi/handouts.html [ AVL Trees etc? ]
