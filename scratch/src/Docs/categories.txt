@@ -85,5 +85,7 @@ Stanford Lectures          http://web.stanford.edu/class/archive/cs/cs161/cs161.
 GIT Hub Problems           https://github.com/pedrovgs/Algorithms
                            https://algorithmcafe.wordpress.com/
 
+MYSQL
+                            http://www.databasejournal.com/features/mysql/article.php/3469351/The-HAVING-and-GROUP-BY-SQL-clauses.htm
 
  
