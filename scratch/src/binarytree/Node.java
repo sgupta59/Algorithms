@@ -9,7 +9,7 @@ public class Node {
 	public Node right;
 	public Node(   int value)
 	{
-		 
+		size = 1;
 		this.value = value;
 	}
 	

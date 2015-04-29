@@ -1,6 +1,7 @@
 package binarytree;
 
 import java.io.IOException;
+import java.util.Queue;
 
 public class BinaryTree {
 
@@ -184,6 +185,122 @@ public class BinaryTree {
 			return node;
 		return tmp;
 	}
+	
+	/**
+	 * Select the kth item in the tree. The tree items are indexed by 0.
+	 * The kth item will have (k-1) items less than it, i.e. on the left sub tree
+	 * 
+	 * @param k
+	 * @return
+	 */
+	public int select(int k)
+	{
+		Node n = select_r(_root,k);
+		if (n == null)
+			return -1;
+		return n.value;
+	}
+	
+	private Node select_r(Node node, int k)
+	{
+		if (node == null)
+			return null;
+		if (k == size(node.left))
+			return node;
+		if (k < size(node.left))
+			return select_r(node.left,k);
+		return select_r(node.right, k-size(node.left)-1);
+		
+	}
+	
+	public int rank(int value)
+	{
+		return rank_r(_root,value);
+	}
+	
+	private int rank_r(Node node, int value)
+	{
+		if (node == null)
+			return 0;
+		if (node.value == value)
+			return size(node.left);
+		if (value < node.value)
+			return rank_r(node.left,value);
+		return 1 + size(node.left) + rank_r(node.right, value); 
+	}
+	
+	public void deleteMin()
+	{
+		_root = deleteMin_r(_root);
+	}
+	
+	private Node deleteMin_r(Node node)
+	{
+		if (node.left == null)
+			return node.right;
+		node.left =  deleteMin_r(node.left);
+		node.size = size(node.left)+ size(node.right)+ 1;  
+		return node;
+	}
+	
+	public void deleteMax()
+	{
+		_root = deleteMax_r(_root);
+	}
+	
+	private Node deleteMax_r(Node node)
+	{
+		if (node.right == null)
+			return node.left;
+		node.right = deleteMax_r(node.right);
+		node.size = 1 + size(node.left)+ size(node.right);
+		return node;
+	}
+	
+	public void delete(int key)
+	{
+		_root = delete_r(_root, key);
+	}
+	
+	private Node delete_r(Node node, int key)
+	{
+		if (node == null)
+			return null;
+		if (key < node.value)
+			node.left = delete_r(node.left, key);
+		else if (key > node.value)
+			node.right = delete_r(node.right, key);
+		else
+		{
+			if (node.left == null)
+				return node.right;
+			if (node.right == null)
+				return node.left;
+			Node x = min_r(node.right);
+			x.right = deleteMin_r(node.right);
+			x.left = node.left;
+		}
+		// update sizes
+		node.size = 1+ size(node.left)+ size(node.right);
+		return node;
+	}
+	
+	public void findRange(Queue<Integer> q, int lo, int hi)
+	{
+		 findRange_r(_root, q, lo, hi);
+	}
+	
+	private void findRange_r(Node node, Queue<Integer> q, int lo, int hi)
+	{
+		if (node == null)
+			return;
+		if (lo < node.value)
+			findRange_r(node.left, q, lo, hi);
+		if (hi > node.value)
+			findRange_r(node.right, q, lo, hi);
+		if (lo <= node.value && hi >= node.value)
+			q.offer(node.value);
+	}
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -215,6 +332,11 @@ public class BinaryTree {
 		
 
 		tree.inorder();
+		tree.deleteMax();
+		tree.deleteMin();
+		tree.inorder();
+		int value = tree.select(5);
+		int rank = tree.rank(30);
 		int flval = tree.floor(17);
 		int cval = tree.ceil(90);
 		int minval = tree.min();
