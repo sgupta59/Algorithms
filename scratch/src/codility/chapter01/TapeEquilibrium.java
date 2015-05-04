@@ -4,10 +4,16 @@ package codility.chapter01;
  * TapeEquilibrium
  * Minimize the value |(A[0] + ... + A[P-1]) - (A[P] + ... + A[N-1])|.
  * Task description
- * A non-empty zero-indexed array A consisting of N integers is given. Array A represents numbers on a tape.
- * Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
- * The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
- * In other words, it is the absolute difference between the sum of the first part and the sum of the second part.
+ * A non-empty zero-indexed array A consisting of N integers is given. 
+ * Array A represents numbers on a tape.
+ * Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: 
+ * A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
+ * 
+ * The difference between the two parts is the value of: 
+ * |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
+ * 
+ * In other words, it is the absolute difference between the sum of the first part and the sum of the 
+ * second part.
  * For example, consider array A such that:
  * A[0] = 3
  * A[1] = 1
@@ -63,14 +69,33 @@ public class TapeEquilibrium {
 		}
 		return minDiff;
 	}
+	public static int solution(int[] A)
+	{
+		int[] prefix = new int[A.length];
+		prefix[0] = A[0];
+		for  (int i = 1; i < A.length; ++i)
+		{
+			prefix[i] = A[i] +  prefix[i-1];
+		}
+		int min = Integer.MAX_VALUE;
+		for (int i = 1; i < A.length; ++i)
+		{
+			// difference between sum of (A[0],A[i-1]) and (A[i],A[N-1) is less than min, this is the
+			// new min.
+			int tmp = Math.abs(prefix[i-1] - (prefix[A.length-1]-prefix[i-1]));
+			if (tmp < min)
+				min = tmp;
+		}
+		return min;
+	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] A = {3,1,2,4,3};
-		int diff = solution(A, A.length);
-		System.out.println(diff);
+		System.out.println(solution(A, A.length));
+		System.out.println(solution(A));
 	}
 
 }

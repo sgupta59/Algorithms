@@ -37,12 +37,40 @@ public class PermMissingElement {
 			sum += A[i];
 		return sumExpected - sum;
 	}
+	
+	public static int solution_1(int[] A)
+	{
+		int N = A.length;
+		// put items in their right index or untill the item is larger than the length
+		for (int i = 0; i < N; ++i)
+		{
+			if (A[i] == i+1)
+				continue;
+			while (A[i] != i+1 && A[i] <= N)
+				swap(A, i, A[i]-1);
+		}
+		int missing = 0;
+		for ( missing= 0;missing< N; ++missing)
+		{
+			if (A[missing] > N)
+				return missing+1;
+		}
+		// corner case.
+		return missing+1;
+	}
+	public static void swap(int[] A, int i, int j)
+	{
+		A[i] = A[i] ^ A[j];
+		A[j] = A[i] ^ A[j];
+		A[i] = A[i] ^ A[j];
+	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] A = {2,3,1,5};
+		int[] A = {2,1,4,5};
+		System.out.println(solution_1(A));
 		System.out.println(solution(A));
 	}
 

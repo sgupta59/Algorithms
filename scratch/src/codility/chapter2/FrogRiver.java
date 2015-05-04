@@ -46,7 +46,7 @@ import java.util.BitSet;
  * expected worst-case space complexity is O(X), beyond input storage (not counting the storage required for input arguments).
  * Elements of input arrays can be modified.
  */
-public class FrogRiver1 {
+public class FrogRiver {
 
 	public static int solution(int[] A, int X)
 	{

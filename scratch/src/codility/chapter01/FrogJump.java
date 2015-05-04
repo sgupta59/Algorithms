@@ -30,7 +30,10 @@ public class FrogJump {
 
 	public static int solution(int x, int y, int d)
 	{
+		// Find absolute number of jumps
 		int val1 = (y-x)/d;
+		// if remainder is not 0, then there is an additional jump needed which will go beyond
+		// the y value
 		int rem = (y-x)%d;
 		return rem == 0 ? val1 : val1+1;
 	}
