@@ -1,6 +1,7 @@
 package binarytree;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class BinaryTree {
@@ -290,16 +291,27 @@ public class BinaryTree {
 		 findRange_r(_root, q, lo, hi);
 	}
 	
+	/**
+	 * Do an inorder type of range query to get values.
+	 * 1. Visit left subtree first if node.value > lo
+	 * 2. Visit current node if node.value >= lo and node.value <= hi
+	 * 3. Visit the right subtree if node.value < hi
+	 * @param node
+	 * @param q
+	 * @param lo
+	 * @param hi
+	 */
 	private void findRange_r(Node node, Queue<Integer> q, int lo, int hi)
 	{
 		if (node == null)
 			return;
 		if (lo < node.value)
 			findRange_r(node.left, q, lo, hi);
-		if (hi > node.value)
-			findRange_r(node.right, q, lo, hi);
 		if (lo <= node.value && hi >= node.value)
 			q.offer(node.value);
+		if (hi > node.value)
+			findRange_r(node.right, q, lo, hi);
+
 	}
 	/**
 	 * @param args
@@ -330,13 +342,16 @@ public class BinaryTree {
 		tree.put(16);
 		tree.put(22);
 		
-
+		Queue<Integer> rangevals = new LinkedList<Integer>();
+		tree.findRange(rangevals, 20, 65);
+		int rank = tree.rank(3);
 		tree.inorder();
 		tree.deleteMax();
 		tree.deleteMin();
 		tree.inorder();
+
 		int value = tree.select(5);
-		int rank = tree.rank(30);
+		
 		int flval = tree.floor(17);
 		int cval = tree.ceil(90);
 		int minval = tree.min();
