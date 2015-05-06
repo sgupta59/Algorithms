@@ -9,6 +9,7 @@ package generics.chapter3;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,7 +28,12 @@ import java.util.List;
 public class Test
 {
     /**
-     * A static method that returns any type T with the bound that T is a subtype of Comparable<T>
+     * max is a method that takes in a collection of the type Collection<T> and returns a T, and does it for any type T
+     * such that T is a subtype of Comparable<T>
+     *
+     * <T extends Comparable<T>> declares a variable of type T.
+     *
+     * T is bounded by Comparable<T>
      *
      * @param col
      * @return
@@ -44,8 +50,30 @@ public class Test
         return candidate;
     }
 
+    public static <T> T max(Collection<T> coll, Comparator<T> t)
+    {
+        T candidate = coll.iterator().next();
+        for (T ele : coll)
+        {
+            if (t.compare(ele, candidate) > 0)
+                candidate = ele;
+        }
+        return candidate;
+    }
+
+    public static <T> T max_1(Collection<? extends T> coll, Comparator<? super T> t)
+    {
+        T candidate = coll.iterator().next();
+        for (T ele : coll)
+        {
+            if (t.compare(ele, candidate) > 0)
+                candidate = ele;
+        }
+        return candidate;
+    }
     /**
-     * Enhancement of the above method, making it more generic.
+     * max_1 is a method that takes in a collection of type Collection<? super T> and returns a T, for any type T
+     * which is a subtype of Comparable<? super T>
      *
      * using the get/put principle
      *
@@ -74,5 +102,16 @@ public class Test
         List<Apple> apples = Arrays.asList(new Apple(5), new Apple(6));
         List<Bannana> bannanas = Arrays.asList(new Bannana(2), new Bannana(5), new Bannana(7));
         List<Fruit> fruits = Arrays.asList(new Apple(1), new Bannana(10));
+        Fruit f = max(fruits);
+        Fruit f1 = max_1(apples);
+        Apple a1 = max_1(apples);
+
+        Comparator<String> strcmp = new Comparator<String>() {
+          @Override
+        public int compare(String s1, String s2)
+          {
+              return s1.length() < s2.length() ? -1 : s1.length() > s2.length() ? 1 : s1.compareTo(s2);
+          }
+        };
     }
 }
