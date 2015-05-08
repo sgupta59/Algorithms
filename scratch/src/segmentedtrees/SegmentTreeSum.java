@@ -7,7 +7,10 @@ package  segmentedtrees;
  *
  * Copyright (c) 2001-2015 Gamma Technologies, Inc. All Rights Reserved.
  */
-
+/**
+ * Good discussion on segmented tree size
+ * http://stackoverflow.com/questions/28470692/how-is-the-memory-of-the-array-of-segment-tree-2-2-ceillogn-1
+ */
 
 /**
  * https://kartikkukreja.wordpress.com/2014/11/09/a-simple-approach-to-segment-trees/
