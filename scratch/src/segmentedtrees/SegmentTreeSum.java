@@ -101,23 +101,38 @@ public class SegmentTreeSum
         return st[si];
     }
     public static int getSegmentTreeSize(int N) {
-        int size = 1;
+        /*int size = 1;
         for (; size < N; size <<= 1)
         {
             System.out.println("test");
         }
-        return size << 1;
+        return size << 1;*/
+        int leaves = N;
 
+
+        // For a balanced tree, the height of the tree will be:
+        int height = base2Log(N);
+
+        // total number of nodes in a balanced tree is 2*2^h - 1
+        return (int)Math.ceil(2*Math.pow(2, height)-1);
+    }
+    public static int base2Log(int N)
+    {
+        return (int)Math.ceil((Math.log(N)/Math.log(2)));
     }
     public static int[] constructST(int[] arr)
     {
         int leaves = arr.length;
-        int totalnodes1 = getSegmentTreeSize(leaves);
-        // heingt is ceil(logn) where log is base 2 log
-        int height = (int)Math.ceil(getLogBase2(leaves));
-        int totalnodes = 2*(int)Math.pow(2.0, height)-1;
-        int[] st = new int[totalnodes];
+
+        int height = base2Log(leaves);
+
+        int nodes = (int)Math.ceil(2*Math.pow(2,height)-1);
+
+        int[] st = new int[nodes];
+        for  (int i = 0; i < st.length; ++i)
+            st[i] = -1;
         constructSTUtil(arr, 0, arr.length-1, st, 0);
+
         return st;
     }
     public static void updateValue(int[] arr, int[] st, int i, int new_val)
@@ -131,8 +146,9 @@ public class SegmentTreeSum
     public static void main(String[] args)
     {
         int[] arr = {1,3,5,7, 9, 11};
+        int height = getSegmentTreeSize(arr.length);
         int[] st = constructST(arr);
-        int sum = getSum(st,arr.length, 1,3);
+        int sum = getSum(st,arr.length, 1,4);
         System.out.println("Sum: " + sum);
         updateValue(arr,st,1,10);
         sum = getSum(st,arr.length, 1,3);
