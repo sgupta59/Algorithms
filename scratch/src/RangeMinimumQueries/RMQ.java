@@ -1,4 +1,4 @@
-package arrays;
+package RangeMinimumQueries;
 
 import utils.Print;
 

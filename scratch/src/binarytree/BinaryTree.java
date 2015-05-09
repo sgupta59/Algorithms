@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import utils.Print;
+
 public class BinaryTree {
 
 	Node _root = null;
-	
+	static int s_counter = 0;
 	public BinaryTree()
 	{
 		
@@ -58,6 +60,44 @@ public class BinaryTree {
 		return node.size;
 	}
 	
+	/**
+	 * Pre order traversal. Used to print document table of contents
+	 * http://www.orcca.on.ca/~yxie/courses/cs2210b-2011/htmls/notes/06-tree.pdf
+	 */
+	public void preorder()
+	{
+		preorder_r(_root);
+	}
+	public void preorder_r(Node node)
+	{
+		if (node == null)
+			return;
+		System.out.print(node.value + " ");
+		preorder_r(node.left);
+		preorder_r(node.right);
+	}
+	
+	/**
+	 * Post order traversal: calculate size of a directory tree.
+	 * http://www.orcca.on.ca/~yxie/courses/cs2210b-2011/htmls/notes/06-tree.pdf
+	 */
+	public void postorder()
+	{
+		postorder_r(_root);
+	}
+	
+	private void postorder_r(Node node)
+	{
+		if (node == null)
+			return;
+		postorder_r(node.left);
+		postorder_r(node.right);
+		System.out.print(node.value() + " ");
+	}
+	
+	/**
+	 * Print an arithmatic expression.
+	 */
 	public void inorder()
 	{
 		inorder_r(_root);
@@ -67,7 +107,7 @@ public class BinaryTree {
 		if (node == null)
 			return;
 		inorder_r(node.left);
-		System.out.print(node.value + " ");
+		System.out.print("("+ node.value + "," + node.id + ")");
 		inorder_r(node.right);
 	}
 	
@@ -313,6 +353,79 @@ public class BinaryTree {
 			findRange_r(node.right, q, lo, hi);
 
 	}
+	public void eulerTour(int[] tour, int[] levels)
+	{
+		s_counter = 0;
+		eulerTour_r(_root, tour, levels, 0);
+	}
+	/**
+	 * In an euler tour, process a node 3 times.
+	 * 1. before visiting any child.
+	 * 2. after visiting left child.
+	 * 3. after visiting right child.
+	 * 
+	 * PREORDER = #1 only (N, L, R)
+	 * INORDER  = #2 only (L N R)
+	 * POSTORDER = #3 only (L R N)
+	 * EULERTOUR = #1, #2, #3, i.e. N L N R N....
+	 * @param node
+	 * @param tour
+	 * @param levels
+	 * @param level
+	 */
+	private void eulerTour_r(Node node, int[] tour, int [] levels, int level)
+	{
+		if (node == null)
+			return;
+		/** process node before visiting left child */
+		processNode(node, level,tour,levels);
+		eulerTour_r(node.left,tour,levels,level+1);
+		
+		if (node.left != null)
+		{
+			/** process node after visiting left child */
+			processNode(node, level,tour,levels);
+		}
+		
+		eulerTour_r(node.right,tour,levels,level+1);
+		if (node.right != null)
+		{	
+			/** process node after visiting right child */
+			processNode(node, level,tour,levels);
+		}
+	}
+	private void processNode(Node node, int level, int[] tour, int[] levels)
+	{
+		tour[s_counter] = node.id;
+		levels[s_counter] = level;
+		Print.array("tour ", tour);
+		Print.array("levels", levels);
+		++s_counter;
+	}
+	
+	/**
+	 * Count number of nodes in a tree using an euler tour.
+	 * @param node
+	 */
+	public void eulerCount()
+	{
+		s_counter = 0;
+		eulerCount(_root);
+	}
+	private void eulerCount(Node node)
+	{
+		int currcounter = s_counter;
+		++s_counter;
+		if (node.left != null)
+			eulerCount(node.left);
+		if (node.right != null)
+			eulerCount(node.right);
+		int nodesize = s_counter - currcounter ;
+		if (nodesize != node.size)
+		{
+			System.out.println("abc");
+		}
+	}
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -342,6 +455,13 @@ public class BinaryTree {
 		tree.put(16);
 		tree.put(22);
 		
+		tree.eulerCount();
+		/**
+		 * An euler tour will require 2N-1 nodes, each node is visited 3 times at the mostl
+		 */
+		int[] tour = new int[2*tree.size()-1];
+		int[] levels = new int[2*tree.size()-1];
+		tree.eulerTour(tour, levels);
 		Queue<Integer> rangevals = new LinkedList<Integer>();
 		tree.findRange(rangevals, 20, 65);
 		int rank = tree.rank(3);

@@ -7,10 +7,13 @@ public class Node {
 	public int size;
 	public Node left;
 	public Node right;
+	public int id;
+	private static int counter = 0;
 	public Node(   int value)
 	{
 		size = 1;
 		this.value = value;
+		id = counter++;
 	}
 	
 	public void setLeft(Node left)

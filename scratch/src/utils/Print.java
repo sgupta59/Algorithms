@@ -14,4 +14,11 @@ public class Print {
 		}
 		System.out.println("");
 	}	
+	public static void array(String name, int[] array)
+	{
+		System.out.print("[" + name + "]:");
+		for (int i = 0; i < array.length; ++i)
+			System.out.print(" " + array[i]);
+		System.out.println();
+	}
 }

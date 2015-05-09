@@ -1,4 +1,4 @@
-package  segmentedtrees;
+package  RangeMinimumQueries;
 
 /*
  * SegmentTreeSum.java
@@ -148,7 +148,7 @@ public class SegmentTreeSum
         int[] arr = {1,3,5,7, 9, 11};
         int height = getSegmentTreeSize(arr.length);
         int[] st = constructST(arr);
-        int sum = getSum(st,arr.length, 1,4);
+        int sum = getSum(st,arr.length, 1,3);
         System.out.println("Sum: " + sum);
         updateValue(arr,st,1,10);
         sum = getSum(st,arr.length, 1,3);
