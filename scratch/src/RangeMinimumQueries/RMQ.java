@@ -1,7 +1,14 @@
 package RangeMinimumQueries;
 
 import utils.Print;
-
+/**
+ * 	// Gives a solution <P(n), Q(n)> where
+	// P(n) = preprocessing time
+	// Q(n) = query time.
+	// simplest solution is <O(1), O(n)> i.e. always scan.
+	// dp table <O(N^2), O(1)> as table is built in O(N^2) space and time complexity.
+  
+ */
 public class RMQ {
 
 	/**
@@ -59,19 +66,26 @@ public class RMQ {
 		return M;
 	}
 	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] A = {16,18,33,98};
-		// Gives a solution <P(n), Q(n)> where
+	 * 	// Gives a solution <P(n), Q(n)> where
 		// P(n) = preprocessing time
 		// Q(n) = query time.
 		// simplest solution is <O(1), O(n)> i.e. always scan.
 		// dp table <O(N^2), O(1)> as table is built in O(N^2) space and time complexity.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		RMQ_test1();
+	}
+
+	public static void RMQ_test1()
+	{
+		// TODO Auto-generated method stub
+		int[] A = {98,33,18,16};
+
 		int[][] M = buildRMQ_simple(A);
 		M = buildRMQ_dp(A);
 		Print.matrix(M);
-	}
 
+		System.out.println("Minimum of range 33-16 is: " + A[M[1][3]]);
+	}
 }

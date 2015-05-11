@@ -10,6 +10,7 @@ public class BinaryTree {
 
 	Node _root = null;
 	static int s_counter = 0;
+	int occurIndex = 0;
 	public BinaryTree()
 	{
 		
@@ -353,10 +354,11 @@ public class BinaryTree {
 			findRange_r(node.right, q, lo, hi);
 
 	}
-	public void eulerTour(int[] tour, int[] levels)
+	public void eulerTour(int[] tour, int[] levels, int[] occurs)
 	{
 		s_counter = 0;
-		eulerTour_r(_root, tour, levels, 0);
+		occurIndex= 0;
+		eulerTour_r(_root, tour, levels,occurs, 0);
 	}
 	/**
 	 * In an euler tour, process a node 3 times.
@@ -373,13 +375,14 @@ public class BinaryTree {
 	 * @param levels
 	 * @param level
 	 */
-	private void eulerTour_r(Node node, int[] tour, int [] levels, int level)
+	private void eulerTour_r(Node node, int[] tour, int [] levels,int[] occurs, int level)
 	{
 		if (node == null)
 			return;
 		/** process node before visiting left child */
+		occurs[occurIndex++] = node.id;
 		processNode(node, level,tour,levels);
-		eulerTour_r(node.left,tour,levels,level+1);
+		eulerTour_r(node.left,tour,levels,occurs,level+1);
 		
 		if (node.left != null)
 		{
@@ -387,7 +390,7 @@ public class BinaryTree {
 			processNode(node, level,tour,levels);
 		}
 		
-		eulerTour_r(node.right,tour,levels,level+1);
+		eulerTour_r(node.right,tour,levels,occurs,level+1);
 		if (node.right != null)
 		{	
 			/** process node after visiting right child */
@@ -461,7 +464,8 @@ public class BinaryTree {
 		 */
 		int[] tour = new int[2*tree.size()-1];
 		int[] levels = new int[2*tree.size()-1];
-		tree.eulerTour(tour, levels);
+		int[] occurance = new int[tree.size()];
+		tree.eulerTour(tour, levels, occurance);
 		Queue<Integer> rangevals = new LinkedList<Integer>();
 		tree.findRange(rangevals, 20, 65);
 		int rank = tree.rank(3);

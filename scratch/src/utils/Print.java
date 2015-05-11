@@ -21,4 +21,11 @@ public class Print {
 			System.out.print(" " + array[i]);
 		System.out.println();
 	}
+	public static void array(int[] path, int start, int end) 
+	{
+		for (int i = start; i <= end; i++) {
+			System.out.print(path[i] + " ");
+		}
+		System.out.println();
+	}
 }
