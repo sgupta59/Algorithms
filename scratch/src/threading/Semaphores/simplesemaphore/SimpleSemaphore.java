@@ -1,4 +1,4 @@
-package threading.simplesemaphore;
+package threading.Semaphores.simplesemaphore;
 
 public class SimpleSemaphore {
 
@@ -11,13 +11,22 @@ public class SimpleSemaphore {
 		_signal = false;
 	}
 
+	/**
+	 * UP in Dijkstra's vernacular
+	 * acquire in Java's vernacular
+	 */
 	public synchronized void take()
 	{
 		// send a signal.
 		_signal = true;
 		notifyAll();
 	}
-	
+
+	/**
+	 * Down in Dijkstra's vernacular
+	 * release in Java's vernacular
+	 * @throws InterruptedException
+	 */
 	public synchronized void release() throws InterruptedException
 	{
 		while(!_signal)

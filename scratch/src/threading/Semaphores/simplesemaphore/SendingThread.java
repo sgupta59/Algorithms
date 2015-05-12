@@ -1,14 +1,15 @@
-package threading.simplesemaphore;
+package threading.Semaphores.simplesemaphore;
 
 public class SendingThread implements Runnable {
 
-	private SimpleSemaphore _sem;
+	private final SimpleSemaphore _sem;
 	public SendingThread(SimpleSemaphore sem)
 	{
 		_sem = sem;
 	}
-	 
-	public void run()
+
+	@Override
+    public void run()
 	{
 		while (true)
 		{

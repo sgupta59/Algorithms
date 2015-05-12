@@ -1,4 +1,4 @@
-package threading.simplesemaphore;
+package threading.Semaphores.simplesemaphore;
 
 public class Tester {
 
@@ -20,7 +20,7 @@ public class Tester {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

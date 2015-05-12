@@ -1,16 +1,16 @@
-package threading.simplesemaphore;
+package threading.Semaphores.simplesemaphore;
 
 public class ReceivingThread implements Runnable {
 
-	private SimpleSemaphore _sem;
-	
+	private final SimpleSemaphore _sem;
+
 	public ReceivingThread(SimpleSemaphore sem)
 	{
 		_sem = sem;
 	}
-	 
+
 	@Override
-	public void run()  
+	public void run()
 	{
 		// TODO Auto-generated method stub
 		while (true)
@@ -23,10 +23,10 @@ public class ReceivingThread implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 
-	 
+
 
 }

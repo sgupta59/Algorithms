@@ -7,6 +7,8 @@
  */
 package threading.blockingqueue;
 
+import java.util.concurrent.Semaphore;
+
 /**
  *
  *
@@ -17,6 +19,21 @@ public class Tester
 {
     public static void main(String[] args)
     {
+        Semaphore test = new Semaphore(2);
+        int count = test.availablePermits();
+        for (int i = 0; i < 4; ++i)
+        {
+        try
+        {
+            test.acquire();
+        }
+        catch (InterruptedException e1)
+        {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+         count = test.availablePermits();
+        }
         // Create a queue
         //BlockingQueue<String> queue = new BlockingQueue<String>(10);
     	BlockingQueueConditioned<String> queue = new BlockingQueueConditioned<String>(10);
