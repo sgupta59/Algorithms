@@ -18,7 +18,8 @@ public class Tester
     public static void main(String[] args)
     {
         // Create a queue
-        BlockingQueue<String> queue = new BlockingQueue<String>(10);
+        //BlockingQueue<String> queue = new BlockingQueue<String>(10);
+    	BlockingQueueConditioned<String> queue = new BlockingQueueConditioned<String>(10);
         Thread t1 = new Thread(new Consumer(queue));
         Thread t2 = new Thread(new Producer(queue));
         new Thread(new Consumer(queue)).start();

@@ -17,9 +17,9 @@ public class Consumer implements Runnable
 {
     private boolean shutdown = false;
     private static int _id = 1;
-    BlockingQueue<String> _queue;
+    BlockingQueueConditioned<String> _queue;
     private final String _name;
-    public Consumer(BlockingQueue<String> queue)
+    public Consumer(BlockingQueueConditioned<String> queue)
     {
         _name = "Consumer_"+ _id++;
         _queue = queue;

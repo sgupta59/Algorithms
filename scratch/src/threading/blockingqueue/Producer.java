@@ -15,14 +15,14 @@ package threading.blockingqueue;
  */
 public class Producer implements Runnable
 {
-    BlockingQueue<String> _queue;
+	BlockingQueueConditioned<String> _queue;
     private boolean _shutdown = false;
     private final String _name;
     private int _id=0;
-    public Producer(BlockingQueue<String> q)
+    public Producer(BlockingQueueConditioned<String> queue)
     {
         _name = "Producer_" + _id++;
-        _queue = q;
+        _queue = queue;
     }
 
     @Override
