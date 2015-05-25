@@ -15,7 +15,10 @@ package generics.chapter4;
  */
 
 /*
- * 1. Type parameters appear in the header that declares the class, not the constructor.
+ * 1. Type parameters appear in the header that declares the class, not the constructor (as is done in C++)
+ * 2. The actual parameters are passed to the constructor when it is invoked.
+ * 3. static methods can not be parametrized and/or accessed using a type parameter, because of type erasure.
+ *    Only Object can be used as a parametrized type.
  *
  */
 public class Pair<T,U>
@@ -36,5 +39,10 @@ public class Pair<T,U>
     {
         //2. Actual type parameters are passed to the constructor when it is invoked.
         return new Pair<String,String>("a", "b");
+    }
+    
+    public static void main(String[] args)
+    {
+    	Pair<String,String> stringPair = new Pair<String,String>("first","second");
     }
 }
