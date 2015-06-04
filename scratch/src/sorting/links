@@ -1,2 +1,9 @@
 http://www.cs.rit.edu/~rlc/Courses/Algorithms/ClassNotes/BasicSorting.pdf
 http://www.cs.rit.edu/~rlc/Courses/Algorithms/ClassNotes/HeapPQ.pdf
+
+Writing integers to a binary file.
+http://stackoverflow.com/questions/772118/problem-writing-int-to-binary-file-in-c
+summing integers
+http://stackoverflow.com/questions/10953210/reading-then-adding-large-number-of-integers-from-binary-file-fast-in-c-c
+
+http://introcs.cs.princeton.edu/java/stdlib/BinaryOut.java.html
