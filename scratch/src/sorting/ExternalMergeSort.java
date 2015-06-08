@@ -1,10 +1,21 @@
 package sorting;
 
 //filename: ExternalSort.java
-import java.util.*;
-import java.io.*;
+import generics.chapter4.Pair;
 
-import backtracking.RatTraversals;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Vector;
 
 /**
 * Goal: offer a generic external-memory sorting program in Java.
@@ -84,6 +95,78 @@ public class ExternalMergeSort {
 		}
 		return newtmpfile;
 	}
+	
+	public static void mergeSortedFiles(List<File> files, File outputfile) throws FileNotFoundException
+	{
+		// create input streams
+		int N = files.size();
+		BufferedReader[] readers = new BufferedReader[N];
+		for (int i = 0; i < N; ++i)
+			readers[i] = new BufferedReader(new FileReader(files.get(i)));
+		// create a priority queue
+		Comparator<Pair<String,Integer>> cmp = new Comparator<Pair<String,Integer>>() {
+			@Override
+			public int compare(Pair<String, Integer> o1,
+					Pair<String, Integer> o2) {
+				 
+				return o1.getFirst().compareTo(o2.getFirst());
+			}};
+		PriorityQueue<Pair<String,Integer>> pq = new PriorityQueue<Pair<String,Integer>>(10,cmp);
+		// add at least one string from each reader
+		for (int i = 0; i < N; ++i)
+		{
+			try
+			{
+				String line = readers[i].readLine();
+				if (line != null)
+					pq.add(new Pair<String,Integer>(line,i));
+			}
+			catch (IOException e)
+			{
+				
+			}
+		}
+		while (!pq.isEmpty()){
+			Pair<String,Integer> pair = pq.poll();
+			System.out.println(pair.getFirst());
+			try
+			{
+				String line = readers[pair.getSecond()].readLine();
+				if (line != null)
+					pq.add(new Pair<String,Integer>(line,pair.getSecond()));
+			}
+			catch (IOException e)
+			{
+				
+			}
+		}
+	}
+	public static int mergeSortedFiles(List<File> files) throws FileNotFoundException
+	{
+		PriorityQueue<PQBufferedFile> pq = new PriorityQueue<PQBufferedFile>();
+		for (File file : files)
+			pq.add(new PQBufferedFile(file));
+		while (!pq.isEmpty())
+		{
+			PQBufferedFile pqf = pq.poll();
+			String line = pqf.poll();
+			if (pqf.isEmpty())
+			{
+				try {
+					pqf.reader.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				pq.add(pqf);
+			}
+		}
+		return 0;
+		
+	}
 	/**
 	 * This merges a bunch of temporary flat files 
 	 * @param files
@@ -131,6 +214,7 @@ public class ExternalMergeSort {
 			public int compare(String r1, String r2){
 				return r1.compareTo(r2);}};
 		List<File> l = sortInBatch(inputfile, comparator) ;
+		//mergeSortedFiles(l,outputfile);
 		mergeSortedFiles(l, outputfile, comparator);
 	}
 }
@@ -167,7 +251,8 @@ class BinaryFileBuffer  implements Comparable<BinaryFileBuffer>{
 	
 	
 	public String peek() {
-		if(empty()) return null;
+		if(empty()) 
+			return null;
 		return buf.get(currentpointer);
 	}
 	public String pop() throws IOException {
