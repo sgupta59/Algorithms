@@ -7,6 +7,7 @@ public class Diameter {
 	/* http://www.quora.com/How-does-following-algorithm-for-finding-longest-path-in-tree-work */
 	/** https://www.youtube.com/watch?v=O4LVAGV8tok */
 	/** casdc.ee.ncku.edu.tw/class/GT/Graph%20Theory%20CH02-2.ppt */
+    /** http://cs-people.bu.edu/tvashwin/cs112_spring09/lab11.html  */
 	/**
 	 * Complexity O(N^2)?
 	 * T(n) = 4T(n/2)+1;
@@ -32,7 +33,7 @@ public class Diameter {
 		int dc = lh+rh+1;
 		return Math.max(dc, Math.max(dl,dr));
 	}
-	
+
 	public static int height(TreeNode root)
 	{
 		if (root == null)
@@ -65,7 +66,7 @@ public class Diameter {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		 /* Constructed binary tree is 
+		 /* Constructed binary tree is
 		        1
 		      /   \
 		    2      3
