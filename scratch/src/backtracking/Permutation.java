@@ -45,6 +45,28 @@ public class Permutation
     public static void main(String[] args)
     {
         String perm = "abcd";
+        permutestring(perm);
         permute(perm,0);
+    }
+
+    public static void permutestring(String input)
+    {
+        String permuted = new String();
+        permutestring_doit(input,permuted);
+    }
+
+    public static void permutestring_doit(String input, String soFar)
+    {
+        if (input.length() == 0)
+        {
+            System.out.println(soFar);
+            return;
+        }
+        // for each first character in the input string,
+        for  (int i = 0; i < input.length(); ++i)
+        {
+            String newstring = input.substring(0,i) + input.substring(i+1);
+            permutestring_doit(newstring, soFar + input.charAt(i));
+        }
     }
 }

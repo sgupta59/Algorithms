@@ -1,3 +1,9 @@
+6/9/2015
+    Apache Kafka vs Storm       http://stackoverflow.com/questions/21808529/apache-kafka-vs-apache-storm
+                                https://issues.apache.org/jira/browse/KAFKA-1489?jql=project%20%3D%20KAFKA%20AND%20labels%20%3D%20newbie%20AND%20status%20%3D%20Open
+                                http://wpcertification.blogspot.com/2014/08/java-client-for-publishing-and.html
+
+    Apache Storm                http://storm.apache.org/documentation/Contributing-to-Storm.html
 5/19/2015
     Local Code          C:\work\workspace-gui\JavaTests
 
@@ -6,3 +12,113 @@
     
 5/15/2015
     Java Perforamnce    http://java-performance.info/tag/memory-optimization/
+    
+Searches
+    Dynamic Graph Algorithms: https://www.google.com/search?q=dynamic+graph+algorithms&ie=utf-8&oe=utf-8#q=dynamic+graph+algorithms&start=10
+    
+
+http://www.worldofvape.com/innokin-itaste-mvp-20-watt/
+http://www.worldofvape.com/kanger-aerotank-mega/
+http://www.worldofvape.com/kanger-aerotank-upgraded-dual-coils-pack-of-5/
+
+http://robertheaton.com/2014/03/27/how-does-https-actually-work/
+http://www.vipan.com/htdocs/bitwisehelp.html
+http://javapapers.com/category/java/java-internals/
+http://www.cs.cmu.edu/afs/cs/academic/class/15213-f00/www/lectures.html
+https://sites.google.com/site/kmrvikash/home/1-paypal-interview-prep/basic-string-question
+http://himmele.googlecode.com/svn/trunk/Algorithms%20and%20Data%20Structures/BTree/src/BTree.java -----> BTREE
+http://www.geekviewpoint.com/
+
+http://speedyguy17.info/algorithms/
+
+
+Design:
+    http://www.cs.ucla.edu/~todd/research/
+LRU Implementation:
+    http://codereview.stackexchange.com/questions/32849/design-lru-cache-interview-questions
+    
+
+Graphs
+    Hamiltonian Cycle/Travellign salesman problem
+    
+BitWise Operations:
+    http://www.cavo.com/newsletter/vo199912/bitwise.pdf
+    http://www.vipan.com/htdocs/bitwisehelp.html
+    http://graphics.stanford.edu/~seander/bithacks.html
+    http://sol.gfxile.net/boolean.html
+    C:\work\docs\bitwise
+    http://www.cs.umd.edu/class/sum2003/cmsc311/Notes/
+    http://nepsweb.co.uk/docs/bitTwiddle.pdf
+    http://www.catonmat.net/blog/bit-hacks-header-file/
+    http://bits.stephan-brumme.com/squareRoot.html
+    https://www.cs.duke.edu/~raw/cps104/TWFNotes/floating.html
+    http://sandbox.mc.edu/~bennet/cs110/flt/dtof.html
+    http://sol.gfxile.net/boolean.html
+    
+Computer Architecture
+--> Current --> http://www.cs.cmu.edu/~./213/schedule.html
+    http://www.cs.cmu.edu/afs/cs/academic/class/15213-f00/www/lectures.html
+    http://www.cs.umd.edu/class/sum2003/cmsc311/Notes/
+    http://www.ece.cmu.edu/~ece447/s14/doku.php?id=schedule
+    
+SSL
+    http://www.visualsvn.com/support/topic/00034/
+    https://www.cacert.org/account.php?id=15&cert=607340==> Certificate for giles
+    
+Algorithms:
+
+    *) Algorithms for Real World ( http://www.cs.cmu.edu/afs/cs/project/pscico-guyb/realworld/www/indexS14.html)
+    *) http://stackoverflow.com/questions/tagged/algorithm?page=7&sort=votes&pagesize=15
+    *) 2-Sum: http://www.mimuw.edu.pl/~malcin/dydaktyka/2012-13/fpt/fpt_07_var.pdf
+    *) Recursion: http://www.allisons.org/ll/AlgDS/Recn/
+    *) Recursion: http://cs.stanford.edu/people/eroberts/courses/cs106b/chapters/06-recursive-procedures.pdf
+    http://erikdemaine.org/papers/BRICS2002/
+    http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2010/study-materials/
+    https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#algorithms--data-structures
+    https://sites.google.com/site/sarvasite/home
+    http://introcs.cs.princeton.edu/java/96optimization/
+    VIDEO: https://courses.engr.illinois.edu/cs473/
+    http://www.cs.washington.edu/education/courses/
+    VIDEO: http://courses.cs.washington.edu/courses/csep521/13wi/
+    
+Probability and computing
+    http://www.cs.cmu.edu/~harchol/15359/class.html
+    http://www.ping.be/math/tel.htm
+    
+    
+Dynamic Programming
+    http://web.engr.illinois.edu/~jeffe/teaching/algorithms/notes/05-dynprog.pdf
+    http://introcs.cs.princeton.edu/java/96optimization/
+    
+    
+Skill Improvement:
+    https://www.rit.edu/~w-asc/resources.php
+    Interviews: https://sites.google.com/site/steveyegge2/five-essential-phone-screen-questions
+    
+Java Swing
+    Concurrency in Swing: http://docs.oracle.com/javase/tutorial/uiswing/concurrency/index.html
+    Swing Related Questions: http://javarevisited.blogspot.com/2011/09/invokeandwait-invokelater-swing-example.html
+    
+Java Threading:
+    http://javarevisited.blogspot.com/2011/04/synchronization-in-java-synchronized.html
+    
+Java Generics
+    http://javarevisited.blogspot.com/2012/06/10-interview-questions-on-java-generics.html
+    http://www.angelikalanger.com/GenericsFAQ/FAQSections/Features.html
+    
+Circular Buffer
+    http://www.vias.org/javacourse/chap16_04.html
+    http://bradforj287.blogspot.com/2010/11/efficient-circular-buffer-in-java.html
+    
+Being a better Student: 
+    http://www.cs.umd.edu/class/sum2003/cmsc311/Notes/
+    
+Links:
+    http://idning-ebook.googlecode.com/svn/trunk/
+    http://idning-ebook.googlecode.com/svn/trunk/interview/
+    https://code.google.com/p/jelly-technical-documents/source/browse/trunk/eBook/
+    
+Course Websites
+    http://cs.brown.edu/courses/
+    
+    

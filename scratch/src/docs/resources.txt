@@ -1,0 +1,49 @@
+http://csclab.murraystate.edu/bob.pilgrim/445/index.html
+http://people.cs.pitt.edu/~kirk/algorithmcourses/
+http://bost.ocks.org/mike/algorithms/
+https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#algorithms--data-structures
+
+http://web.engr.illinois.edu/~jeffe/teaching/algorithms/
+http://test.scripts.psu.edu/users/d/j/djh300/cmpsc465/notes-4985903869437/solutions-to-some-homework-exercises-as-shared-with-students/4-solutions-clrs-22.pdf
+http://www.cs.rit.edu/~rlc/Courses/Algorithms/ClassNotes/Graphs.pdf
+http://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/13/Small13.pdf
+http://courses.cs.vt.edu/csonline/NumberSystems/Lessons/Subtraction/
+http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/
+http://stackoverflow.com/questions/2603692/what-is-the-difference-between-tree-depth-and-height
+http://www.ime.unicamp.br/~andreani/MS515/capitulo7.pdf
+
+
+JVM LInks
+http://www.fasterj.com/articles/oraclecollectors1.shtml
+http://www.techpaste.com/2012/02/default-jvm-settings-gc-jit-java-heap-sizes-xms-xmx-operating-systems/#more-3569
+http://java-performance.info/tag/memory-optimization/
+https://www.petefreitag.com/articles/gctuning/
+http://xmlandmore.blogspot.com/2014/08/hotspot-case-study-of-tuning.html
+http://www.herongyang.com/Java-Tools/jvisualvm-Install-Visual-GC-Plugin.html
+https://blog.codecentric.de/en/2012/08/useful-jvm-flags-part-5-young-generation-garbage-collection/
+http://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html#uds-search-results
+http://www.stefankrause.net/wp/?p=64
+https://blog.codecentric.de/en/2012/07/useful-jvm-flags-part-3-printing-all-xx-flags-and-their-values/
+https://plumbr.eu/blog/garbage-collection/what-garbage-collector-are-you-using
+http://xmlandmore.blogspot.com/2014/08/hotspot-case-study-of-tuning.html
+https://blog.codecentric.de/en/2012/07/useful-jvm-flags-part-3-printing-all-xx-flags-and-their-values/
+
+
+Java Performance
+	System Performance : Enterprise and the Cloud By Brendan Gregg
+	Java Performance Tuning by Jack Shirazi
+	Java Performance and Scalability: A Quantitative Approach by Henry H. Liu 
+	The Well-Grounded Java Developer
+Read more: http://javarevisited.blogspot.com/2014/07/top-5-java-performance-tuning-books.html#ixzz3YWGd8E9W
+
+
+
+C:\work\performance\jvmstat
+set PATH="C:\Program Files\Java\jdk1.8.0_25\bin";C:\work\performance\jvmstat\bat;%PATH%
+jps
+jstat -gcutil 55620 1000 3
+set JVMSTAT_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_25
+visualgc 55620
+"C:\Program Files\Java\jdk1.8.0_25\bin\jvisualvm.exe"
+
+ 2.1217
