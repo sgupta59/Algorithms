@@ -3,8 +3,9 @@ package binarytree;
 import utils.TreeNode;
 
 public class Diameter {
-
-	
+ /** http://techieme.in/tree-diameter/ */
+	/* http://www.quora.com/How-does-following-algorithm-for-finding-longest-path-in-tree-work */
+	/** https://www.youtube.com/watch?v=O4LVAGV8tok */
 	/**
 	 * Complexity O(N^2)?
 	 * T(n) = 4T(n/2)+1;

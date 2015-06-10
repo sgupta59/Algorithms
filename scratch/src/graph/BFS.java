@@ -28,7 +28,7 @@ public class BFS {
 					    g.depth[v] = g.depth[u]+1;
 					    g.parent[v] = u;
 					    q.offer(v);
-					    //System.out.println("Tree Edge " + u + " to " + v);
+					    System.out.println("Tree Edge " + u + " to " + v);
 					}
 					else if (g.color[v] == Graph.GRAY)
 					{
@@ -37,9 +37,13 @@ public class BFS {
 						{
 							System.out.println("Sibling Edge " + u + " to " + v);
 						}
+						else if (g.depth[u] < g.depth[v])
+						{
+							System.out.println("Forward Edge: " + u + " to " + v);
+						}
 						else
 						{
-							System.out.println("Ancestor Edge: " + u + " to " + v);
+							System.out.println("Back Edge: " + u + " to " + v);
 						}
 					}
 					else
@@ -48,7 +52,7 @@ public class BFS {
 						{
 							System.out.println("Parent Edge " + u + " to " + v);
 						}
-						else if (g.parent[u] == g.parent[v])
+						else if (g.parent[u] == g.parent[v] || g.depth[u] == g.depth[v])
 						{
 							System.out.println("Sibling Edge: " + u + " to " + v);
 						}
@@ -64,6 +68,11 @@ public class BFS {
 	}
 	public static void main(String[] args)
 	{
+		/**
+		 *  0--1  2--3  
+		 *  |  | /| /|
+		 *  4  5--6--7
+		 */
 		Graph g = new Graph(8, false);
 		g.addEdge(0,1);
 		g.addEdge(0,4);
