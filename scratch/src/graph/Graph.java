@@ -71,6 +71,7 @@ public class Graph {
 		this.E = adj.length;
 		color = new int[V];
 		parent = new int[V];
+		depth = new int[V];
 		d = new int[V];
 		f = new int[V];
 	}
