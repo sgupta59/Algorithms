@@ -35,9 +35,11 @@ public class StripMap<K,V> {
 		}
 	}
 	
+	 
 	public StripMap(int bucketSize) 
 	{
-		buckets = (Node<K, V>[])new Object[bucketSize];
+		//buckets = (Node<K, V>[])new Object[bucketSize];
+		buckets = (Node<K, V>[])new Node[bucketSize];
 		locks = new Object[NUM_LOCKS];
 		for (int i = 0; i < NUM_LOCKS;++i)
 			locks[i] = new Object();

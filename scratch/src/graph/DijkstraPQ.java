@@ -32,7 +32,7 @@ public class DijkstraPQ {
 						Node n1 = new Node();
 						n1.cost=d[v];
 						n1.id=v;
-						pq.remove(n1);
+						//pq.remove(n1);
 						d[v] = d[u]+g.adj[u][v];
 						pq.offer(n1);
 					}
