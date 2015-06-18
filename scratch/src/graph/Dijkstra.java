@@ -1,6 +1,5 @@
 package graph;
 
-import java.util.PriorityQueue;
 
 /**
  * http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
@@ -44,7 +43,7 @@ public class Dijkstra {
 		d = new int[g.V];
 		p = new int[g.V];
 		s = new boolean[g.V];
-		
+
 		// initialize all vertices etc.
 		for (int idx = 0; idx < g.V; ++idx)
 		{
@@ -76,44 +75,7 @@ public class Dijkstra {
 		}
 		printSolution(d);
 	}
-	public static void DijkstraPriorityQueue(Graph g, int src)
-	{
-		// create priority queue
-		int d[] = new int[g.V];
-		for (int idx = 0; idx < d.length; ++idx)
-			d[idx] = Integer.MAX_VALUE;
-		PriorityQueue<Node> pq = new PriorityQueue<Node>();
-		// create a node
-		Node n = new Node();
-		n.cost=0;
-		n.id=src;
-		d[src]= 0;
-		pq.offer(n);
-		while (pq.isEmpty()==false)
-		{
-			// Get the node.
-			Node evalNode = pq.remove();
-			int u = evalNode.id;
-			for (int v = 0; v < g.V; ++v)
-			{
-				if (g.adj[u][v] != 0)
-				{
-					// there is an edge.
-					if (d[u] + g.adj[u][v] < d[v])
-					{
-						Node n1 = new Node();
-						n1.cost=d[v];
-						n1.id=v;
-						pq.remove(n1);
-						d[v] = d[u]+g.adj[u][v];
-						pq.offer(n1);
-					}
-				}
-			}
-		}
-		printSolution(d);
-		System.out.println("");
-	}
+
 	public static void main(String[] args)
 	{
 		/* Let us create the example graph discussed above */
@@ -133,6 +95,5 @@ public class Dijkstra {
 		  Graph graph = new Graph();
 		  graph.setAdj(adj);
 		  dijkstraLinear(graph, 0);
-		  DijkstraPriorityQueue(graph,0);
 	}
 }
