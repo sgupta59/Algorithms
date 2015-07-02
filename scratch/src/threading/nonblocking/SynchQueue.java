@@ -23,11 +23,12 @@ public class SynchQueue<E> {
 
     private final Node<E> dummy = new Node<E>(null, null);
     private final Node<E> head = dummy;
-    private final Node<E> tail = dummy;
+    private  Node<E> tail = dummy;
 
     public synchronized boolean put(E item) {
         Node<E> newNode = new Node<E>(item, null);
         tail.next = newNode;
+         tail = newNode;
         return true;
     }
 
@@ -42,13 +43,13 @@ public class SynchQueue<E> {
         return retval;
     }
 
+    
     public static void main(String[] args) throws InterruptedException {
         final SynchQueue<Integer> cs = new SynchQueue<Integer>();
         final ExecutorService executor = Executors.newCachedThreadPool();
         final CountDownLatch startSignal = new CountDownLatch(1);
         final int size = args.length >= 1 ? new Integer(args[0]) : 10;
         final CountDownLatch stopSignal = new CountDownLatch(size);
-
 
         // put threads
 
