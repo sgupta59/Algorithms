@@ -1,6 +1,6 @@
 package generics.Maps;
 
-public class HeapTest {
+public class MapTest {
 
 	/**
 	 * @param args
