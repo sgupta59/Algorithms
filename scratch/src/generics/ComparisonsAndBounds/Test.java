@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001-2015 Gamma Technologies, Inc. All Rights Reserved.
  */
-package generics.chapter3;
+package generics.ComparisonsAndBounds;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -50,6 +50,16 @@ public class Test
         return candidate;
     }
 
+    public static <T extends Comparable<? super T>> T max1(Collection<? extends T> col)
+    {
+    	T cand = col.iterator().next();
+    	for (T ele : col)
+    	{
+    		if (ele.compareTo(cand) < 0)
+    			cand = ele;
+    	}
+    	return cand;
+    }
     public static <T> T max(Collection<T> coll, Comparator<T> t)
     {
         T candidate = coll.iterator().next();
