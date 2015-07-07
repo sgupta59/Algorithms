@@ -522,6 +522,7 @@ public class HashMap<K,V>
         return null;
     }
 
+   
     
     /**
      * Offloaded version of put for null keys
@@ -617,6 +618,7 @@ public class HashMap<K,V>
                 e = next;
             }
         }
+        
     }
 
     
@@ -711,6 +713,8 @@ public class HashMap<K,V>
         return e;
     }
 
+    
+    
     /**
      * Special version of remove for EntrySet using {@code Map.Entry.equals()}
      * for matching.
@@ -886,6 +890,7 @@ public class HashMap<K,V>
         }
     }
 
+    
     /**
      * Adds a new entry with the specified key, value and hash code to
      * the specified bucket.  It is the responsibility of this

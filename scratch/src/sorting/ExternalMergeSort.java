@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -113,19 +114,24 @@ public class ExternalMergeSort {
 			}};
 		PriorityQueue<Pair<String,Integer>> pq = new PriorityQueue<Pair<String,Integer>>(10,cmp);
 		// add at least one string from each reader
+		 
 		for (int i = 0; i < N; ++i)
 		{
 			try
 			{
 				String line = readers[i].readLine();
 				if (line != null)
+				{
 					pq.add(new Pair<String,Integer>(line,i));
+					 
+				}
 			}
 			catch (IOException e)
 			{
 				
 			}
 		}
+		 
 		while (!pq.isEmpty()){
 			Pair<String,Integer> pair = pq.poll();
 			System.out.println(pair.getFirst());
@@ -214,8 +220,8 @@ public class ExternalMergeSort {
 			public int compare(String r1, String r2){
 				return r1.compareTo(r2);}};
 		List<File> l = sortInBatch(inputfile, comparator) ;
-		//mergeSortedFiles(l,outputfile);
-		mergeSortedFiles(l, outputfile, comparator);
+		mergeSortedFiles(l,outputfile);
+		//mergeSortedFiles(l, outputfile, comparator);
 	}
 }
 

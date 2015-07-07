@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2001-2015 Gamma Technologies, Inc. All Rights Reserved.
  */
-package arrays;
+package sorting;
 
 /**
  * Source: https://github.com/pedrovgs/Algorithms/blob/master/src/main/java/com/github/pedrovgs/problem6/MergeSortedArrays.java
