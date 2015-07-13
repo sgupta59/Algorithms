@@ -19,6 +19,7 @@ public class BlockingQueue<T> {
 
     private final LinkedList<T> linkedList = new LinkedList<T>();
     private final int limit;
+
     public BlockingQueue(int limit)
     {
         this.limit = limit;
