@@ -8,6 +8,7 @@
 package generics.chapter4;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,6 +40,10 @@ public class StaticMembers
     {
         Cell<String> a = new Cell<String>("abc");
         Cell<Integer> b = new Cell<Integer> (2);
+        /**
+         * This is legal as there is one list of static Objects. Both "abc" and 2 are in it.
+         */
+        List<Object> values = Cell.getValues();
         // Fails as static members of a class can not refer to the type parameters as static methods/members
         // are shared across instantians of of different types
         //System.out.println("Current Count: " + Cell<Integer>.getCount());
@@ -54,6 +59,7 @@ class Cell<T> {
     private final int id;
     private final T value;
     private static int count = 0;
+    private static List<Object> values = new ArrayList<Object>();
     private static synchronized int nextId()
     {
         return count++;
@@ -62,9 +68,13 @@ class Cell<T> {
     public Cell(T value)
     {
         this.value = value;
+        values.add(value);
         id = nextId();
     }
 
+    public static List<Object> getValues() {
+    	return values;
+    }
     public T getValue()
     {
         return value;

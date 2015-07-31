@@ -8,6 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
 
+/**
+ * Source: https://courseware.stanford.edu/pg/courses/lectures/317431
+ * Source: docs/generics-tutorial.pdf
+ * @author kg
+ *
+ */
 public class OldStyleCollections {
 
 	class Foo implements Comparable<Object> {
