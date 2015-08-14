@@ -65,7 +65,7 @@ public class PeakFinding {
 			return a[ridx][mid];
 		
 		if (a[ridx][mid] < a[ridx-1][mid] && a[ridx+1][mid] <= a[ridx-1][mid])
-			return peak2D_1(a, mid-1);
+			return peak2D_1(a, mid-1); 
 		return peak2D_1(a, a[0].length-mid-1);
 			
 	}
