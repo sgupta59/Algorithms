@@ -1,4 +1,16 @@
+<<<<<<< HEAD
+=======
+/******************************************************************************
+ *  Compilation:  javac In.java
+ *  Execution:    java In   (basic test --- see source for required files)
+ *  Dependencies: none
+ *
+ *  Reads in data of various types from standard input, files, and URLs.
+ *
+ ******************************************************************************/
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
 package StdLib;
+<<<<<<< HEAD
 
 /******************************************************************************
  *  Compilation:  javac In.java
@@ -9,6 +21,8 @@ package StdLib;
  *
  ******************************************************************************/
 
+=======
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -25,13 +39,22 @@ import java.util.regex.Pattern;
 
 /**
  *  <i>Input</i>. This class provides methods for reading strings
+<<<<<<< HEAD
  *  and numbers from standard input, file input, URLs, and sockets. 
+=======
+ *  and numbers from standard input, file input, URLs, and sockets.
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
  *  <p>
  *  The Locale used is: language = English, country = US. This is consistent
  *  with the formatting conventions with Java floating-point literals,
  *  command-line arguments (via {@link Double#parseDouble(String)})
+<<<<<<< HEAD
  *  and standard output. 
+=======
+ *  and standard output.
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
  *  <p>
+<<<<<<< HEAD
  *  For additional documentation, see 
  *  <a href="http://introcs.cs.princeton.edu/31datatype">Section 3.1</a> of
  *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> 
@@ -41,6 +64,17 @@ import java.util.regex.Pattern;
  *  whitespace, reading a full line consumes
  *  the following end-of-line delimeter, while reading a character consumes
  *  nothing extra. 
+=======
+ *  For additional documentation, see
+ *  <a href="http://introcs.cs.princeton.edu/31datatype">Section 3.1</a> of
+ *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
+ *  by Robert Sedgewick and Kevin Wayne.
+ *  <p>
+ *  Like {@link Scanner}, reading a token also consumes preceding Java
+ *  whitespace, reading a full line consumes
+ *  the following end-of-line delimeter, while reading a character consumes
+ *  nothing extra.
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
  *  <p>
  *  Whitespace is defined in {@link Character#isWhitespace(char)}. Newlines
  *  consist of \n, \r, \r\n, and Unicode hex code points 0x2028, 0x2029, 0x0085;
@@ -52,21 +86,36 @@ import java.util.regex.Pattern;
  *  @author Kevin Wayne
  */
 public final class In {
+<<<<<<< HEAD
     
     /*** begin: section (1 of 2) of code duplicated from In to StdIn. */
     
+=======
+
+    /*** begin: section (1 of 2) of code duplicated from In to StdIn. */
+
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
     // assume Unicode UTF-8 encoding
     private static final String CHARSET_NAME = "UTF-8";
 
     // assume language = English, country = US for consistency with System.out.
     private static final Locale LOCALE = Locale.US;
 
+<<<<<<< HEAD
     // the default token separator; we maintain the invariant that this value 
     // is held by the scanner's delimiter between calls
     private static final Pattern WHITESPACE_PATTERN
         = Pattern.compile("\\p{javaWhitespace}+");
 
     // makes whitespace characters significant 
+=======
+    // the default token separator; we maintain the invariant that this value
+    // is held by the scanner's delimiter between calls
+    private static final Pattern WHITESPACE_PATTERN
+        = Pattern.compile("\\p{javaWhitespace}+");
+
+    // makes whitespace characters significant
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
     private static final Pattern EMPTY_PATTERN
         = Pattern.compile("");
 
@@ -167,11 +216,19 @@ public final class In {
     }
 
     /**
+<<<<<<< HEAD
      * Create an input stream from a given Scanner source; use with 
      * <tt>new Scanner(String)</tt> to read from a string.
      * <p>
      * Note that this does not create a defensive copy, so the
      * scanner will be mutated as you read on. 
+=======
+     * Create an input stream from a given Scanner source; use with
+     * <tt>new Scanner(String)</tt> to read from a string.
+     * <p>
+     * Note that this does not create a defensive copy, so the
+     * scanner will be mutated as you read on.
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
      */
     public In(Scanner scanner) {
         this.scanner = scanner;
@@ -187,9 +244,16 @@ public final class In {
     /*** begin: section (2 of 2) of code duplicated from In to StdIn,
       *  with all methods changed from "public" to "public static". ***/
 
+    /*** begin: section (2 of 2) of code duplicated from In to StdIn,
+      *  with all methods changed from "public" to "public static". ***/
+
    /**
      * Is the input empty (except possibly for whitespace)? Use this
+<<<<<<< HEAD
      * to know whether the next call to {@link #readString()}, 
+=======
+     * to know whether the next call to {@link #readString()},
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
      * {@link #readDouble()}, etc will succeed.
      */
     public boolean isEmpty() {
@@ -206,7 +270,11 @@ public final class In {
     }
 
     /**
+<<<<<<< HEAD
      * Is the input empty (including whitespace)? Use this to know 
+=======
+     * Is the input empty (including whitespace)? Use this to know
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
      * whether the next call to {@link #readChar()} will succeed. <p> Functionally
      * equivalent to {@link #hasNextLine()}.
      */
@@ -242,7 +310,11 @@ public final class In {
             + " Please contact the authors.";
         scanner.useDelimiter(WHITESPACE_PATTERN);
         return ch.charAt(0);
+<<<<<<< HEAD
     }  
+=======
+    }
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
 
 
    /**
@@ -370,19 +442,33 @@ public final class In {
             vals[i] = Double.parseDouble(fields[i]);
         return vals;
     }
+<<<<<<< HEAD
     
     /*** end: section (2 of 2) of code duplicated from In to StdIn */
     
+=======
+
+    /*** end: section (2 of 2) of code duplicated from In to StdIn */
+
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
    /**
      * Close the input stream.
      */
     public void close() {
+<<<<<<< HEAD
         scanner.close();  
+=======
+        scanner.close();
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
     }
 
     /**
      * Reads all ints from a file.
+<<<<<<< HEAD
      * @deprecated Clearer to use 
+=======
+     * @deprecated Clearer to use
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
      * <tt>new In(filename)</tt>.{@link #readAllInts()}
      */
     public static int[] readInts(String filename) {
@@ -391,11 +477,52 @@ public final class In {
 
    /**
      * Reads all doubles from a file.
+<<<<<<< HEAD
      * @deprecated Clearer to use 
      * <tt>new In(filename)</tt>.{@link #readAllDoubles()}
      */
     public static double[] readDoubles(String filename) {
         return new In(filename).readAllDoubles();
+=======
+     * @deprecated Clearer to use
+     * <tt>new In(filename)</tt>.{@link #readAllDoubles()}
+     */
+    public static double[] readDoubles(String filename) {
+        return new In(filename).readAllDoubles();
+    }
+
+   /**
+     * Reads all strings from a file.
+     * @deprecated Clearer to use
+     * <tt>new In(filename)</tt>.{@link #readAllStrings()}
+     */
+    public static String[] readStrings(String filename) {
+        return new In(filename).readAllStrings();
+    }
+
+    /**
+     * Reads all ints from standard input.
+     * @deprecated Clearer to use {@link StdIn#readAllInts()}
+     */
+    public static int[] readInts() {
+        return new In().readAllInts();
+    }
+
+   /**
+     * Reads all doubles from standard input.
+     * @deprecated Clearer to use {@link StdIn#readAllDoubles()}
+     */
+    public static double[] readDoubles() {
+        return new In().readAllDoubles();
+    }
+
+   /**
+     * Reads all strings from standard input.
+     * @deprecated Clearer to use {@link StdIn#readAllStrings()}
+     */
+    public static String[] readStrings() {
+        return new In().readAllStrings();
+>>>>>>> branch 'master' of https://github.com/sgupta59/Algorithms
     }
 
    /**
