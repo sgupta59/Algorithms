@@ -1,3 +1,4 @@
+package arrays;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -20,7 +21,7 @@ public class TwoSum {
 		}
 		return count;
 	}
-	
+
 	public static int TwoSum_hashed(int[] a, int x)
 	{
 		int count = 0;
@@ -38,7 +39,7 @@ public class TwoSum {
 		}
 		return count;
 	}
-	
+
 	public static int TwoSum_scan(int[] a, int x)
 	{
 		int count = 0;
@@ -65,7 +66,7 @@ public class TwoSum {
 		}
 		return count;
 	}
-	
+
 	public static int TwoSum_binarySearch(int[] a, int x)
 	{
 		int count = 0;
