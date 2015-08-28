@@ -70,6 +70,38 @@ public class QuickSort {
 	    if (i < high)
 	    	quicksort_1(numbers, i, high);
 	  }
+	
+	public static int partition(int[] a, int lo, int hi)
+	{
+		int i = lo;
+		int j = hi+1;
+		int p = a[lo];
+		while (true) {
+			while (a[++i] < p) {
+				if (i > hi) break;
+			}
+			while (a[--j] > p) {
+				if (j < lo) break;
+			}
+			if (i >= j)
+				break;
+			int tmp = a[i];
+			a[i] = a[j];
+			a[j] = tmp;
+		}
+		int tmp = a[lo];
+		a[lo] = a[j];
+		a[j] = tmp;
+		return j;
+	}
+	public static void quicksort_2(int[] a, int lo, int hi)
+	{
+		if (lo >= hi)
+			return;
+		int p = partition(a, lo, hi);
+		quicksort_2(a, lo, p-1);
+		quicksort_2(a, p+1, hi);
+	}
 	/**
 	 * @param args
 	 */
@@ -77,6 +109,8 @@ public class QuickSort {
 		// TODO Auto-generated method stub
 		// Get a random generated array
 		int[] a = getArray();
+		int[] b = {5,3,1,6,2,4,9};
+		quicksort_2(b,0, b.length-1);
 		quicksort(a);
 		printArray(a);
 	}
