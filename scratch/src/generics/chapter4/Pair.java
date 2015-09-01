@@ -24,7 +24,7 @@ package generics.chapter4;
 public class Pair<T,U>
 {
     public final T first;
-    private final U second;
+    public final U second;
     public Pair(T first, U second)
     {
         this.first = first;
