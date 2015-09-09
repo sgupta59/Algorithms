@@ -59,7 +59,9 @@ public class TrieST<Value> {
     // R-way trie node
     private static class Node {
         private Object val;
+        private char c;
         private final Node[] next = new Node[R];
+        public String toString() { return String.valueOf(c);}
     }
 
    /**
@@ -122,9 +124,12 @@ public class TrieST<Value> {
         }
         char c = key.charAt(d);
         x.next[c] = put(x.next[c], key, val, d+1);
+        x.next[c].c = c;
         return x;
     }
 
+    
+    
     /**
      * Returns the number of key-value pairs in this symbol table.
      * @return the number of key-value pairs in this symbol table
@@ -219,6 +224,7 @@ public class TrieST<Value> {
      */
     public String longestPrefixOf(String query) {
         int length = longestPrefixOf(root, query, 0, 0);
+        length = longestPrefixOf_iter(query);
         return query.substring(0, length);
     }
 
@@ -227,13 +233,40 @@ public class TrieST<Value> {
     // assuming the first d character match and we have already
     // found a prefix match of length length
     private int longestPrefixOf(Node x, String query, int d, int length) {
-        if (x == null) return length;
-        if (x.val != null) length = d;
+        if (x == null)
+        {
+        	return length;
+        }
+        if (x.val != null) 
+        {
+        	length = d;
+        }
         if (d == query.length()) return length;
         char c = query.charAt(d);
         return longestPrefixOf(x.next[c], query, d+1, length);
     }
 
+    private int longestPrefixOf_iter(String query)
+    {
+    	if (root == null)
+    		return query.length();
+    	int length = 0;
+    	int len = query.length();
+    	Node start = root;
+    	for (int i = 0; i < len; ++i)
+    	{
+    		char c = query.charAt(i);
+    		if (start.next[c] != null) 
+    		{
+    			++length;
+    			start = start.next[c];
+    		}
+    		else
+    			break;
+    	}
+    	return length;
+    }
+     
     /**
      * Removes the key from the set if the key is present.
      * @param key the key
