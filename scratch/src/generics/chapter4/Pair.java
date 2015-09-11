@@ -41,6 +41,7 @@ public class Pair<T,U>
         return new Pair<String,String>("a", "b");
     }
     
+    public String toString() { return "[" + this.first + "," + this.second + "]";}
     public static void main(String[] args)
     {
     	Pair<String,String> stringPair = new Pair<String,String>("first","second");
