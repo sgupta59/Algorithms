@@ -32,6 +32,7 @@ public class DijkstraPQ {
 						Node n1 = new Node();
 						n1.cost=d[v];
 						n1.id=v;
+						System.out.println("offering vertex: " + v);
 						//pq.remove(n1);
 						d[v] = d[u]+g.adj[u][v];
 						pq.offer(n1);
@@ -40,6 +41,52 @@ public class DijkstraPQ {
 			}
 		}
 		System.out.println("");
+	}
+	
+	public static void dijkstra_test(Graph g, int start)
+	{
+		// create an array for weights of the vertices, initialized to Max value.
+		// create an array of parent pointers.
+		// create an array of visited nodes
+		int d[] = new int[g.V];
+		int p[] = new int[g.V];
+		boolean[] visited = new boolean[g.V];
+		for (int i = 0; i < g.V; ++i) {
+			d[i] = Integer.MAX_VALUE;
+			p[i] = -1;
+			visited[i] = false;
+		}
+		// create a new node here
+		d[start] = 0;
+		p[start] = -1;
+		 
+		Vertex u = new Vertex(start, d[start]);
+		PriorityQueue<Vertex> pq = new PriorityQueue<Vertex>();
+		pq.offer(u);
+		while (pq.isEmpty() == false) {
+			 u = pq.poll();
+			 visited[u.id] = true;
+			 // now get the adjacent vertices
+			 for (int j = 0; j < g.V; ++j) {
+				 if (visited[j] == false && g.adj[u.id][j] > 0 ) {
+					 
+				 }
+			 }
+		}
+	}
+	private static class Vertex implements Comparable<Vertex>{
+		public int id;
+		public int w;
+		public Vertex(int id, int w) {
+			this.id = id;
+			this.w = w;
+		}
+		
+		public int compareTo(Vertex other) {
+			if ( this.w < other.w)
+				return -1;
+			return w == other.w ? 0 : 1;
+		}
 	}
 	public static void main(String[] args)
 	{
