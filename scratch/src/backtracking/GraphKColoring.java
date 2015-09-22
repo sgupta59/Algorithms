@@ -15,6 +15,9 @@ package backtracking;
  */
 public class GraphKColoring {
 
+	/**
+	 * Check if any adjacent vertex has the same color as the u vertex. return false in that case
+	 */
 	public static boolean isValid(int[][] g, int u, int color, int[] vcolor)
 	{
 		for (int v = 0; v < g.length; ++v) {
@@ -36,9 +39,11 @@ public class GraphKColoring {
 				vcolor[u] = i;
 				if (graphColoring_dfs(g, u+1, m, vcolor)) 
 					return true;
+				// unmark the color try the next color
 				vcolor[u] = -1;
 			}
 		}
+		// return false as no match was found.
 		return false;
 	}
 	public static void graphColoring(int[][] g, int m)
