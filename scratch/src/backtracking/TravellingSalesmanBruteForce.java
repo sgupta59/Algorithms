@@ -4,8 +4,12 @@ package backtracking;
  *  A brute force implementation of the travelling salesman problem.
  *  Calculate the path lengths of all hamiltonian circuits and find the smallest path.
  *  
- *  Use an adjacency matrix to get the paths.
+ *  Use an adjacency matrix to get the paths. 
+ *  Assuming that there is a path between all pairs of vertices in the graph.
+ *  
  *  An array is used to store the paths 
+ *  
+ *  The complexity is O(N!), actually since this is an undirected graph, complexity is O(N!/N) 
  * @author kg
  *
  */
