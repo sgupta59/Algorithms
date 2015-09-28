@@ -29,7 +29,7 @@ import java.util.Vector;
 * This software is in the public domain.
 *
 * By Daniel Lemire, April 2010
-* http://www.daniel-lemire.com/
+* https://github.com/lemire/externalsortinginjava
 */
 public class ExternalMergeSort {
 
