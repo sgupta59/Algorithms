@@ -2,13 +2,14 @@ package sorting;
 
 public class QuickSort {
 
+
 	public static void quicksort(int[] a)
 	{
 		int lo = 0; int hi = a.length-1;
 		quicksort_doit(a, lo, hi);
 		return;
 	}
-	
+
 	public static void quicksort_doit(int[] a, int lo, int hi)
 	{
 		if (lo < hi)
@@ -33,44 +34,8 @@ public class QuickSort {
 			quicksort_doit(a, mid+1, hi);
 		}
 	}
-	private static void quicksort_1(int[] numbers, int low, int high) {
-	    int i = low, j = high;
-	    // Get the pivot element from the middle of the list
-	    int pivot = numbers[low + (high-low)/2];
-	    int v = low + (high-low)/2;
-	    // Divide into two lists
-	    while (i <= j) {
-	      // If the current value from the left list is smaller then the pivot
-	      // element then get the next element from the left list
-	      while (numbers[i] < pivot) {
-	        i++;
-	      }
-	      // If the current value from the right list is larger then the pivot
-	      // element then get the next element from the right list
-	      while (numbers[j] > pivot) {
-	        j--;
-	      }
 
-	      // If we have found a values in the left list which is larger then
-	      // the pivot element and if we have found a value in the right list
-	      // which is smaller then the pivot element then we exchange the
-	      // values.
-	      // As we are done we can increase i and j
-	      if (i <= j) {
-	    	  int tmp = numbers[j];
-	    	  numbers[j] = numbers[i];
-	    	  numbers[i] = tmp;
-	        i++;
-	        j--;
-	      }
-	    }
-	    // Recursion
-	    if (low < j)
-	    	quicksort_1(numbers , low, j);
-	    if (i < high)
-	    	quicksort_1(numbers, i, high);
-	  }
-	
+
 	public static int partition(int[] a, int lo, int hi)
 	{
 		int i = lo;
@@ -102,6 +67,32 @@ public class QuickSort {
 		quicksort_2(a, lo, p-1);
 		quicksort_2(a, p+1, hi);
 	}
+
+	/**
+	 *  Selection is 0 based, i.e. find the 0th item, 1st item etc.
+	 */
+	public static int select(int[] a, int lo, int hi, int idx)
+	{
+	    if (lo == hi)
+	        return a[lo];
+	    int p = partition(a, lo, hi);
+	    if (p == idx)
+	        return a[p];
+	    if (idx < p)
+	        return select(a, lo, p-1,idx);
+	    return select(a, p+1, hi, idx);
+	}
+	public static int select_clrs(int[] a, int lo, int hi, int idx)
+	{
+	    if (lo == hi)
+	        return a[lo];
+	    int p = partition(a, lo, hi);
+	    int k = (p-lo)+1;
+	    if (k == idx) return a[p];
+	    if (idx < k) return select_clrs(a, lo, p-1, idx);
+	    return select_clrs(a, p+1, hi, idx-k);
+	}
+
 	/**
 	 * @param args
 	 */
@@ -110,6 +101,18 @@ public class QuickSort {
 		// Get a random generated array
 		int[] a = getArray();
 		int[] b = {5,3,1,6,2,4,9};
+		int[] c = new int[b.length];
+		System.arraycopy(b, 0, c, 0, b.length);
+		//for (int i = 0; i < b.length; ++i)
+		//{
+		//    System.arraycopy(b, 0, c, 0, b.length);
+		//    System.out.println(i + "'th item: "+ select(c,0,c.length-1,i));
+		//}
+		for (int i = 0; i < b.length; ++i)
+        {
+            System.arraycopy(b, 0, c, 0, b.length);
+            System.out.println(i+1 + "'th item: "+ select_clrs(c,0,c.length-1,i+1));
+        }
 		quicksort_2(b,0, b.length-1);
 		quicksort(a);
 		printArray(a);
@@ -119,13 +122,13 @@ public class QuickSort {
 			System.out.print(i+" ");
 		}
 	}
-	
+
 	public static int[] getArray(){
 		int size=10;
 		int []array = new int[size];
 		int item = 0;
 		for(int i=0;i<size;i++){
-			item = (int)(Math.random()*100); 
+			item = (int)(Math.random()*100);
 			array[i] = item;
 		}
 		return array;
