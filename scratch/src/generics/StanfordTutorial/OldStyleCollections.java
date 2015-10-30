@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeSet;
 
 /**
  * Source: https://courseware.stanford.edu/pg/courses/lectures/317431
@@ -16,7 +15,7 @@ import java.util.TreeSet;
  */
 public class OldStyleCollections {
 
-	class Foo implements Comparable<Object> {
+	class Foo implements Comparable< Object> {
 
 		@Override
 		public int compareTo(Object o) {
@@ -39,26 +38,27 @@ public class OldStyleCollections {
 		}
 		return last;
 	}
-	
+
 	public static void testWriteAll()
 	{
 		Collection<String> c = null;
 		Sink<Object> s = null;
 		String str = writeAll(c, s);
 		Comparator<Object> cmp = new Comparator<Object>() {
-			public int compare(Object o1, Object o2) {
+			@Override
+            public int compare(Object o1, Object o2) {
 				return 0;
-			} 
+			}
 	    };
 	    Test1<String> strtree = new Test1<String>(cmp);
 	}
 	public static void test()
 	{
 		List<?>[] lsa = new List<?>[10];
-		 
+
 		//Object o = lsa;
-		
-		Object[] objs = (Object[ ])lsa;
+
+		Object[] objs = lsa;
 		List<Integer> li = new ArrayList<Integer>();
 		li.add(new Integer(3));
 		lsa[1] = li;
@@ -70,7 +70,7 @@ public class OldStyleCollections {
 	 * List<String> ys has erasure of List.
 	 * List xs has no erasure.
 	 * xs.add(integer) works.
-	 * last line is translated in the code as (String)ys.iterator().next(). 
+	 * last line is translated in the code as (String)ys.iterator().next().
 	 * This gives a ClassCastExample
 	 * @param x
 	 * @return
@@ -81,7 +81,7 @@ public class OldStyleCollections {
 		List xs = ys;
 		xs.add(x);
 		Collection cs = new ArrayList<String>();
-		
+
 		return ys.iterator().next();
 	}
 	/**
@@ -95,7 +95,7 @@ public class OldStyleCollections {
 		for (T item : array)
 			c.add(item);
 	}
-	
+
 	public static void TestGenericMethod_addToCollection()
 	{
 		// create an array of objects
@@ -152,11 +152,11 @@ public class OldStyleCollections {
 		for (Object obj : c)
 			System.out.println(obj);
 	}
-	
+
 	/**
 	 * 1. Method name can not be the same as others because of erasure.
 	 * 2. This is a collection of Unknown types. However, the type is an object so objects can be extracted.
-	 * 3. Extracting an Object here still. 
+	 * 3. Extracting an Object here still.
 	 * @param c
 	 */
 	public static void PrintCollection2(Collection<?> c)
@@ -164,7 +164,7 @@ public class OldStyleCollections {
 		for (Object obj : c)
 			System.out.println(obj);
 	}
-	
+
 	/**
 	 * Erasure again!! name has to be different.
 	 * This is a bounded wildcard. There is an unknown type that extends a person.
@@ -176,17 +176,17 @@ public class OldStyleCollections {
 		for (Person p : c)
 			System.out.println(p.toString());
 	}
-	
-	
+
+
 	public static void GenericWildcardTest()
 	{
 		Collection<?> collection = new ArrayList<Person>();
-		
-		
+
+
 		// FAILS
 		//    Collection has type ? so can not add person.
 		//collection.add(new Person("abc"));
-		
+
 		// works as every type can be null
 		collection.add(null);
 	}
@@ -207,7 +207,7 @@ public class OldStyleCollections {
 	public static void oldTest1()
 	{
 		// create 3 workers and 3 persons and add them to collection.
-		ArrayList personlist = new ArrayList(); 
+		ArrayList personlist = new ArrayList();
 		personlist.add(new Person("one"));
 		personlist.add(new Person("two"));
 		personlist.add(new Person("three"));
@@ -216,12 +216,12 @@ public class OldStyleCollections {
 		PrintCollection1(personlist);
 		PrintCollection(personlist);
 	}
-	
-	public static void main(String[] args)  
-	{ 
-		
+
+	public static void main(String[] args)
+	{
+
 		test();
-	    
+
 	}
 }
 

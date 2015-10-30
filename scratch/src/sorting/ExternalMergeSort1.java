@@ -1,5 +1,6 @@
 package sorting;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -23,6 +24,18 @@ public class ExternalMergeSort1 {
 		ArrayBuffer ab3 = new ArrayBuffer(arr3);
 		// create a priority queue of array buffers.
 		PriorityQueue<ArrayBuffer> pq = new PriorityQueue<ArrayBuffer>();
+		PriorityQueue<ArrayBuffer> pq1 = new PriorityQueue<ArrayBuffer>(
+		    new Comparator<ArrayBuffer> () {
+
+                @Override
+                public int compare(ArrayBuffer o1, ArrayBuffer o2)
+                {
+                    // TODO Auto-generated method stub
+                    return 0;
+                }
+
+		    }
+		    );
 		pq.add(ab1);
 		pq.add(ab2);
 		pq.add(ab3);
@@ -37,26 +50,27 @@ public class ExternalMergeSort1 {
 	}
 
 	private static class ArrayBuffer implements Comparable<ArrayBuffer> {
-		private int[] array;
+		private final int[] array;
 		int currentpointer;
 		private ArrayBuffer(int[] array)
 		{
 			this.array = array;
 			currentpointer = 0;
 		}
-		
-		public int compareTo(ArrayBuffer o)
+
+		@Override
+        public int compareTo(ArrayBuffer o)
 		{
 		     int i1 = peek();
 		     int i2 = o.peek();
 		     return (i1 > i2 ? 1 : (i1 == i2) ? 0 : -1);
 		}
-		
+
 		public int peek()
 		{
 			return array[currentpointer];
 		}
-		
+
 		public int poll()
 		{
 			int val = array[currentpointer];
@@ -65,7 +79,7 @@ public class ExternalMergeSort1 {
 				currentpointer = -1;
 			return val;
 		}
-		
+
 		public boolean hasNext()
 		{
 			return currentpointer != -1;
