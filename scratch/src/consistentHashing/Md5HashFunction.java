@@ -13,17 +13,23 @@ public class Md5HashFunction implements HashFunction {
   
   public int hash(Object o) {
     byte[] bs = md5.digest(o.toString().getBytes());
-    byte[] bs1 = new byte[4];
-    bs1[0] = 111;
-    bs1[1] = 3;
-    bs1[2] = 2;
-    bs1[3] = 127;
-    int i1 = bs1[3] << 24;
-    int i2 = (bs1[3] & 0xFF) << 24;
-    int id =  ((bs1[3] & 0xFF) << 24)
-    	      | ((bs1[2] & 0xFF) << 16)
-    	      | ((bs1[1] & 0xFF) << 8)
-    	      | ((bs1[0] & 0xFF));
+    
+    /** Bit shifting by 0xFF is done to take care of int's 2 complement representation. */
+    /** -122 is = 1111 1111 1111 1111 1111 1111 1001 0001 */
+    byte b1 = (byte)0x86;
+    /** Left shifting by 16 and an implict cast to an int will result in 
+     * 1111 1111 1001 0001 0000 0000 0000 0000 
+     */
+    int I2 = b1 << 16;
+    /**
+     * Left shifting with an and with 0xFF will shift only those bytes and other bits are set to 0 as
+     * -122  = 1111 1111 1111 1111 1111 1111 1001 0001 
+     * 0xFF  = 0000 0000 0000 0000 0000 0000 1111 1111
+     * &     = 0000 0000 0000 0000 0000 0000 1001 0001
+     * <<16  = 0000 0000 1001 0001 0000 0000 0000 0000
+     */
+    int I2_2 = (b1 & 0xFF) << 16;
+
     return ((bs[3] & 0xFF) << 24)
       | ((bs[2] & 0xFF) << 16)
       | ((bs[1] & 0xFF) << 8)
