@@ -51,6 +51,7 @@ public class PrintSubsets
     {
         String in = "abcd";
         String out="";
+        printSubSet_1(out,in);
         printSubset("", in);
         printSubsets_iter(in,out);
        
@@ -66,23 +67,34 @@ public class PrintSubsets
      *       
      *   1. Involves printing at each level the substring part.
      *   2. when instring is empty, then return
-     * @param in
-     * @param out
+     * @param In
+     * @param soFar
      */
-    public static void printSubsets_iter(String in, String out)
+    public static void printSubsets_iter(String In, String soFar)
     {
-        if (in.length() == 0)
+        if (In.length() == 0)
         {
         	return;
         }
-        for (int idx = 0; idx < in.length(); ++idx)
+        for (int idx = 0; idx < In.length(); ++idx)
         {
-            String ins = in.substring(idx+1);
-            String outs = out+in.charAt(idx);
+            String ins = In.substring(idx+1);
+            String outs = soFar+In.charAt(idx);
             System.out.println(outs);
             printSubsets_iter(ins, outs);
         }
     }
 
-    
+    public static void printSubSet_1(String soFar, String rem)
+    {
+    	if (rem.length() == 0)
+    	{
+    		System.out.println(soFar);
+    		return;
+    	}
+    	for (int i = 0; i < rem.length() ; ++i)
+    	{
+    		printSubSet_1(soFar+rem.charAt(i), rem.substring(i+1));
+    	}
+    }
 }
