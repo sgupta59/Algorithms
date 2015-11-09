@@ -5,6 +5,12 @@ import java.util.HashMap;
 
 public class TwoSum {
 
+    /**
+     * Brute force solution. O(N^2).
+     * @param a
+     * @param x
+     * @return
+     */
 	public static int TwoSum_bruteForce(int[] a, int x)
 	{
 		int count = 0;
@@ -22,6 +28,18 @@ public class TwoSum {
 		return count;
 	}
 
+	/**
+	 *
+	 * Hash map solution, O(N) but with O(N) space.
+	 * Find 2 items that sum to x.
+	 * Store <x-a[i], a[i]> in a map
+	 * x-a[i] is the an a[j] such that a[j] + a[i] = x i.e. a[j] = x - a[i]
+	 * just look up the value.
+	 * does not have to be sorted.
+	 * @param a
+	 * @param x
+	 * @return
+	 */
 	public static int TwoSum_hashed(int[] a, int x)
 	{
 		int count = 0;
@@ -40,9 +58,21 @@ public class TwoSum {
 		return count;
 	}
 
+	/**
+	 * O(N) solution but needs sorting.
+	 *  Sort the input aray.
+	 *  For each item a[i], check the ending element A[j] (j = n-1 initially)
+	 *  if a[i] + a[j] == x, this is a solution.
+	 *  if a[i] + a[j] > x, then a[j] is larger, decreemnt j by 1 and try again.
+	 *  if a[i] + a[j] < x, then increment a[i] to increase the sum.
+	 * @param a
+	 * @param x
+	 * @return
+	 */
 	public static int TwoSum_scan(int[] a, int x)
 	{
 		int count = 0;
+		Arrays.sort(a);
 		for (int i = 0, j = a.length-1; i < j ; )
 		{
 			if (a[i] + a[j] == x)
@@ -90,6 +120,7 @@ public class TwoSum {
 	{
 		int[] intArray = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 		int count =  TwoSum_binarySearch(intArray,16);
+		int count1 = TwoSum_scan(intArray,16);
 		assert count == 8;
 	}
 }
