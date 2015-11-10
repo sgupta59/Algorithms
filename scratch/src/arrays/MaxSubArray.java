@@ -52,6 +52,22 @@ public class MaxSubArray {
 	    }
 	    return max;
 	}
+	public static int maxSubArray_sum_linear(int[] arr)
+	{
+	    int currSum = arr[0];
+	    int maxSum = arr[0];
+	    int minSum = Math.min(0, currSum);
+	    for (int j = 1; j < arr.length; ++j)
+	    {
+	        currSum = currSum + arr[j];
+	        if (currSum - minSum > maxSum)
+	            maxSum = currSum - minSum;
+	        if (currSum < minSum)
+	            minSum = currSum;
+
+	    }
+	    return maxSum;
+	}
 	/**
 	 * Brute force solution example. This is O(N^3)
 	 * @param a
