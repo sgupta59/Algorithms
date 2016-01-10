@@ -117,6 +117,30 @@ public class QuickSort {
 		quicksort(a);
 		printArray(a);
 	}
+
+	public static int partition_3(int[] a, int lo, int hi)
+	{
+	    int i = lo;
+	    int j = hi+1;
+	    int p = a[lo];
+	    while (true)
+	    {
+	        while (i > hi && a[i] < p)
+	            ++i;
+	        while (j < lo && a[j] > p)
+	            --j;
+	        if (i >= j)
+	            break;
+	        int tmp = a[j];
+	        a[j] = a[i];
+	        a[i] = tmp;
+	    }
+	    int tmp = a[j];
+	    a[j] = a[lo];
+	    a[lo] = tmp;
+	    return j;
+	}
+
 	public static void printArray(int[] a){
 		for(int i : a){
 			System.out.print(i+" ");
