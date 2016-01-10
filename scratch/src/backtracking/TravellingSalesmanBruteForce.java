@@ -113,5 +113,57 @@ public class TravellingSalesmanBruteForce {
 		};
 		TravellingSalesmanBruteForce tsp = new TravellingSalesmanBruteForce(graph);
 		tsp.shortestPath(0);
+		int[] p = new int[graph.length];
+		boolean[] visited = new boolean[graph.length];
+		int[] dist = new int[graph.length];
+		for (int i = 0; i < graph.length; ++i)
+		{
+			p[i] = -1; 
+		    visited[i] = false;
+		    dist[i] = -1;
+		}
+		int rem = graph.length;
+		
+		TSPTour(graph, 0, p, dist, rem,0);
+		
+	}
+	
+	/**
+	 * @param g  the graph
+	 * @param u  start vertex initally can be any
+	 * @param p  the parent vector array
+	 * @param rem # of remaining nodes in the graph to use to decide when to check tha the start vertex can be included.
+	 */
+	public static void TSPTour(int[][] g, int u, int[] p, int[] dist, int rem, int src)
+	{
+		if (rem == 1)
+		{
+			// tihs is a solution, print the path, calculate the distances and print it.
+			for (int i = 0; i < p.length; ++i)
+				System.out.print(p[i] + " -> " );
+			System.out.println(0);
+		}
+		// start from u.
+		// for all neighbors of u 
+		for (int v = 0; v < g.length; ++v)
+		{
+			
+			if (g[u][v] != 0)
+			{
+				// if v is not visited, i.e. it has no parent call TSPTour
+				// or if v is parent of u then do nothing.
+				if (p[v] != -1 || p[u] == v)
+					continue;
+				// if v is the source vertex and there are other vertices to process, ignore this vertex
+				if (v == src && rem > 0 )
+					continue;
+				
+				// mark parent of v as u
+				p[v] = u;
+				TSPTour(g, v, p, dist, rem-1, src);
+				p[v] = -1;
+			}
+		}
+		
 	}
 }
